@@ -1,13 +1,24 @@
 package com.anangkur.synrgychapter3
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
     private val activityMainBinding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+    private val secondActivityResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        ::handleSecondActivityResultCallback,
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding.button1.setOnClickListener {
             val parcelable = DataParcelable("ini adalah data parcelable", 100)
-            SecondActivity.startActivity(this, parcelable)
+            secondActivityResult.launch(
+                SecondActivity.provideIntent(this)
+                    .putExtra(SecondActivity.EXTRA_PARCELABLE, parcelable)
+            )
             // val dataSerializable = DataSerializable("ini adalah data serializable", 100)
             // SecondActivity.startActivity(this, dataSerializable)
             // val bundle = Bundle().apply {
@@ -64,5 +78,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         Log.d("MainActivity", "setup toolbar")
+    }
+
+    private fun handleSecondActivityResultCallback(callback: ActivityResult) {
+        if (callback.resultCode == Activity.RESULT_OK) {
+            val result = callback.data?.getStringExtra(SecondActivity.EXTRA_STRING)
+            result?.let {
+                Snackbar.make(activityMainBinding.root, it, Snackbar.LENGTH_SHORT).show()
+            }
+        }
     }
 }

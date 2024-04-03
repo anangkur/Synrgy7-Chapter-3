@@ -1,11 +1,16 @@
 package com.anangkur.synrgychapter3
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import android.provider.MediaStore
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.databinding.ActivitySecondBinding
+import com.google.android.material.snackbar.Snackbar
 import java.io.Serializable
 
 class SecondActivity : AppCompatActivity() {
@@ -15,11 +20,13 @@ class SecondActivity : AppCompatActivity() {
         const val EXTRA_INTEGER = "extraInteger"
         private const val EXTRA_BUNDLE = "extraBundle"
         private const val EXTRA_SERIALIZABLE = "extraSerializable"
-        private const val EXTRA_PARCELABLE = "extraParcelable"
+        const val EXTRA_PARCELABLE = "extraParcelable"
+
+        private const val REQUEST_IMAGE_CAPTURE = 1
 
         fun startActivity(context: Context, extraString: String, extraInteger: Int) {
             context.startActivity(
-                Intent(context, SecondActivity::class.java)
+                provideIntent(context)
                     .putExtra(EXTRA_STRING, extraString)
                     .putExtra(EXTRA_INTEGER, extraInteger)
             )
@@ -27,23 +34,27 @@ class SecondActivity : AppCompatActivity() {
 
         fun startActivity(context: Context, bundle: Bundle) {
             context.startActivity(
-                Intent(context, SecondActivity::class.java)
+                provideIntent(context)
                     .putExtra(EXTRA_BUNDLE, bundle)
             )
         }
 
         fun startActivity(context: Context, data: Serializable) {
             context.startActivity(
-                Intent(context, SecondActivity::class.java)
+                provideIntent(context)
                     .putExtra(EXTRA_SERIALIZABLE, data)
             )
         }
 
         fun startActivity(context: Context, data: Parcelable) {
             context.startActivity(
-                Intent(context, SecondActivity::class.java)
+                provideIntent(context)
                     .putExtra(EXTRA_PARCELABLE, data)
             )
+        }
+
+        fun provideIntent(context: Context): Intent {
+            return Intent(context, SecondActivity::class.java)
         }
     }
 
@@ -53,11 +64,55 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activitySecondBinding.rootSecond)
 
+        activitySecondBinding.buttonTakePicture.setOnClickListener { dispatchTakePictureIntent() }
+        setDataFromPreviousActivityToTextView(getDataFromPreviousActivity())
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            REQUEST_IMAGE_CAPTURE -> {
+                Log.d("SecondActivity", data?.data?.toString().orEmpty().ifEmpty { "data nya kosong" })
+            }
+            else -> {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        val intentResult = Intent().putExtra(EXTRA_STRING, activitySecondBinding.tvSecond.text)
+        setResult(Activity.RESULT_OK, intentResult)
+        super.onBackPressed()
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        } catch (e: ActivityNotFoundException) {
+            e.message?.let {
+                Snackbar.make(activitySecondBinding.rootSecond, it, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun getDataFromPreviousActivity(): String {
         val bundle = intent?.getBundleExtra(EXTRA_BUNDLE)
         val serializable: DataSerializable? = intent?.getSerializableExtra(EXTRA_SERIALIZABLE) as DataSerializable?
         val parcelable: DataParcelable? = intent?.getParcelableExtra(EXTRA_PARCELABLE)
 
-        val extraString = when {
+        val extraString = getExtraStringFromPreviousActivity(bundle, serializable, parcelable)
+        val extraInteger = getExtraIntegerFromPreviousActivity(bundle, serializable, parcelable)
+
+        return "$extraString $extraInteger"
+    }
+
+    private fun getExtraStringFromPreviousActivity(
+        bundle: Bundle?,
+        serializable: DataSerializable?,
+        parcelable: DataParcelable?,
+    ): String? {
+        return when {
             bundle != null -> {
                 bundle.getString(EXTRA_STRING)
             }
@@ -71,8 +126,14 @@ class SecondActivity : AppCompatActivity() {
                 intent?.getStringExtra(EXTRA_STRING)
             }
         }
+    }
 
-        val extraInteger = when {
+    private fun getExtraIntegerFromPreviousActivity(
+        bundle: Bundle?,
+        serializable: DataSerializable?,
+        parcelable: DataParcelable?,
+    ): Int? {
+        return when {
             bundle != null -> {
                 bundle.getInt(EXTRA_INTEGER)
             }
@@ -86,7 +147,9 @@ class SecondActivity : AppCompatActivity() {
                 intent?.getIntExtra(EXTRA_INTEGER, -1)
             }
         }
+    }
 
-        activitySecondBinding.tvSecond.text = "$extraString $extraInteger"
+    private fun setDataFromPreviousActivityToTextView(data: String) {
+        activitySecondBinding.tvSecond.text = data
     }
 }
