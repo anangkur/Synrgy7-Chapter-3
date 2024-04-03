@@ -7,11 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.anangkur.synrgychapter3.databinding.FragmentFirstBinding
+import com.anangkur.synrgychapter3.databinding.FragmentTabBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class FirstFragment : Fragment() {
 
-    private lateinit var viewBinding: FragmentFirstBinding
+    private lateinit var viewBinding: FragmentTabBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,7 +29,7 @@ class FirstFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FragmentFirstBinding.inflate(inflater, container, false).also {
+        return FragmentTabBinding.inflate(inflater, container, false).also {
             viewBinding = it
             Log.d("FirstFragment", "onCreateView")
         }.root
@@ -38,7 +39,21 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("FirstFragment", "onViewCreated")
 
-        viewBinding.text.text = "contoh manipulasi text di fragment satu"
+        viewBinding.viewPager.adapter = ViewPagerAdapter(this, provideListFragment())
+
+        TabLayoutMediator(viewBinding.tab, viewBinding.viewPager) { tab, position ->
+            tab.text = "tab ${position+1}"
+        }.attach()
+    }
+
+    private fun provideListFragment(): List<Fragment> {
+        return listOf(
+            FifthFragment(),
+            SixthFragment(),
+            SeventhFragment(),
+            EightFragment(),
+            NinthFragment(),
+        )
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
