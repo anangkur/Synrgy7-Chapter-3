@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.anangkur.synrgychapter3.databinding.FragmentFirstBinding
 
-class SeventhFragment : Fragment() {
+class EightFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentFirstBinding
 
@@ -24,6 +24,6 @@ class SeventhFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.text.text = "ini adalah fragment tujuh"
+        viewBinding.text.text = "ini adalah fragment delapan"
     }
 }

@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity.third.subthirdactivity
 
 import android.os.Bundle
 import android.view.LayoutInflater

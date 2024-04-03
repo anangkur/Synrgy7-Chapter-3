@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -9,6 +9,8 @@ import android.os.Parcelable
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.data.DataParcelable
+import com.anangkur.synrgychapter3.data.DataSerializable
 import com.anangkur.synrgychapter3.databinding.ActivitySecondBinding
 import com.google.android.material.snackbar.Snackbar
 import java.io.Serializable

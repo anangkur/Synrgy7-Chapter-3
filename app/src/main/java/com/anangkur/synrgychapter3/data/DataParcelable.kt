@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

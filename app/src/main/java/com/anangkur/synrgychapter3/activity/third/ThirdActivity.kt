@@ -1,12 +1,16 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity.third
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.FirstFragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.ForthFragment
+import com.anangkur.synrgychapter3.R
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.SecondFragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.ThirdFragment
 import com.anangkur.synrgychapter3.databinding.ActivityThirdBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ThirdActivity : AppCompatActivity() {
 

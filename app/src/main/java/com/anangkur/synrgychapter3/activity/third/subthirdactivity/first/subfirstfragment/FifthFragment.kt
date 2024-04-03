@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.anangkur.synrgychapter3.databinding.FragmentFirstBinding
 
-class SixthFragment : Fragment() {
-
+class FifthFragment : Fragment() {
     private lateinit var viewBinding: FragmentFirstBinding
 
     override fun onCreateView(
@@ -16,7 +15,7 @@ class SixthFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FragmentFirstBinding.inflate(layoutInflater, container, false).also {
+        return FragmentFirstBinding.inflate(inflater, container, false).also {
             viewBinding = it
         }.root
     }
@@ -24,6 +23,6 @@ class SixthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.text.text = "ini adalah fragment enam"
+        viewBinding.text.text = "ini adalah fragment lima"
     }
 }

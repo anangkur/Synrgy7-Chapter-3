@@ -1,13 +1,13 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity
 
 import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.activity.third.ThirdActivity
+import com.anangkur.synrgychapter3.data.DataParcelable
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 

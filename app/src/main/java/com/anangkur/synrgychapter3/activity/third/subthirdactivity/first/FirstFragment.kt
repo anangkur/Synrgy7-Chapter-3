@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3
+package com.anangkur.synrgychapter3.activity.third.subthirdactivity.first
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.EightFragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.FifthFragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.NinthFragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.SeventhFragment
+import com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.SixthFragment
 import com.anangkur.synrgychapter3.databinding.FragmentTabBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
