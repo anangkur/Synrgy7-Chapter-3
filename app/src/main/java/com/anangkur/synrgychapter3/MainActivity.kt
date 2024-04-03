@@ -13,7 +13,11 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
-    private val activityMainBinding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val activityMainBinding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(
+            layoutInflater
+        )
+    }
 
     private val secondActivityResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult(),
@@ -24,22 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activityMainBinding.root)
 
-        activityMainBinding.button1.setOnClickListener {
-            val parcelable = DataParcelable("ini adalah data parcelable", 100)
-            secondActivityResult.launch(
-                SecondActivity.provideIntent(this)
-                    .putExtra(SecondActivity.EXTRA_PARCELABLE, parcelable)
-            )
-            // val dataSerializable = DataSerializable("ini adalah data serializable", 100)
-            // SecondActivity.startActivity(this, dataSerializable)
-            // val bundle = Bundle().apply {
-            //     putString(SecondActivity.EXTRA_STRING, "ini adalah data bundle")
-            //     putInt(SecondActivity.EXTRA_INTEGER, 100)
-            // }
-            // SecondActivity.startActivity(this, bundle)
-            // SecondActivity.startActivity(this, "ini adalah data", 100)
-            // Snackbar.make(activityMainBinding.root, "test button 1", Snackbar.LENGTH_SHORT).show()
-        }
+        activityMainBinding.button1.setOnClickListener { openSecondActivity() }
+        activityMainBinding.button2.setOnClickListener { openThirdActivity() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -87,5 +77,26 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(activityMainBinding.root, it, Snackbar.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun openSecondActivity() {
+        val parcelable = DataParcelable("ini adalah data parcelable", 100)
+        secondActivityResult.launch(
+            SecondActivity.provideIntent(this)
+                .putExtra(SecondActivity.EXTRA_PARCELABLE, parcelable)
+        )
+        // val dataSerializable = DataSerializable("ini adalah data serializable", 100)
+        // SecondActivity.startActivity(this, dataSerializable)
+        // val bundle = Bundle().apply {
+        //     putString(SecondActivity.EXTRA_STRING, "ini adalah data bundle")
+        //     putInt(SecondActivity.EXTRA_INTEGER, 100)
+        // }
+        // SecondActivity.startActivity(this, bundle)
+        // SecondActivity.startActivity(this, "ini adalah data", 100)
+        // Snackbar.make(activityMainBinding.root, "test button 1", Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun openThirdActivity() {
+        ThirdActivity.startActivity(this)
     }
 }
