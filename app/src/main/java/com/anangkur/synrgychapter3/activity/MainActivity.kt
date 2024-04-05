@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.activity.navigationcomponent.NavigationComponentActivity
 import com.anangkur.synrgychapter3.activity.third.ThirdActivity
 import com.anangkur.synrgychapter3.data.DataParcelable
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding.button1.setOnClickListener { openSecondActivity() }
         activityMainBinding.button2.setOnClickListener { openThirdActivity() }
+        activityMainBinding.buttonNavigationComponent.setOnClickListener { openNavigationComponentActivity() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -98,5 +100,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openThirdActivity() {
         ThirdActivity.startActivity(this)
+    }
+
+    private fun openNavigationComponentActivity() {
+        NavigationComponentActivity.startActivity(this)
     }
 }

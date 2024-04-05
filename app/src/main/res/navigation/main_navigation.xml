@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/firstNavigationFragment">
+
+
+    <fragment
+        android:id="@+id/firstNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.FirstNavigationFragment"
+        android:label="FirstNavigationFragment"
+        tools:layout="@layout/fragment_first_navigation">
+        <action
+            android:id="@+id/action_firstNavigationFragment_to_secondNavigationFragment"
+            app:destination="@id/secondNavigationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.SecondNavigationFragment"
+        android:label="SecondNavigationFragment"
+        tools:layout="@layout/fragment_second_navigation">
+        <action
+            android:id="@+id/action_secondNavigationFragment_to_thirdNavigationFragment"
+            app:destination="@id/thirdNavigationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.ThirdNavigationFragment"
+        android:label="ThirdNavigationFragment"
+        tools:layout="@layout/fragment_third_navigation">
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="Namanya Kosong" />
+    </fragment>
+</navigation>
