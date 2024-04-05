@@ -30,6 +30,15 @@ class ThirdActivity : AppCompatActivity() {
         viewBinding.bottomNav.selectedItemId = R.id.menu_1
     }
 
+    /**
+     * Sets the provided fragment to the container within the activity.
+     *
+     * This function replaces the content of the fragment container with the provided fragment.
+     * It performs a fragment transaction using the supportFragmentManager to replace the existing fragment
+     * with the new one and commits the transaction.
+     *
+     * @param fragment The fragment to be set within the activity.
+     */
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
@@ -37,6 +46,13 @@ class ThirdActivity : AppCompatActivity() {
             .commit()
     }
 
+    /**
+     * Sets up the bottom navigation view and handles item selection.
+     *
+     * This function configures the bottom navigation view by setting a listener for item selection.
+     * When an item is selected, it replaces the content of the fragment container based on the selected item.
+     * It uses the setFragment function to replace the fragment accordingly.
+     */
     private fun handleBottomNavigation() {
         viewBinding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

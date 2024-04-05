@@ -51,6 +51,16 @@ class FirstFragment : Fragment() {
         }.attach()
     }
 
+    /**
+     * Provides a list of fragments to be used in a ViewPager or similar container.
+     *
+     * This function creates and returns a list of fragments to be displayed in a ViewPager
+     * or any similar container that requires a list of fragments.
+     * The list includes instances of FifthFragment, SixthFragment, SeventhFragment,
+     * EightFragment, and NinthFragment.
+     *
+     * @return A list of Fragment instances.
+     */
     private fun provideListFragment(): List<Fragment> {
         return listOf(
             FifthFragment(),

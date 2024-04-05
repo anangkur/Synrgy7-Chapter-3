@@ -26,8 +26,16 @@ class FirstNavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonGoToSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_firstNavigationFragment_to_secondNavigationFragment)
-        }
+        binding.buttonGoToSecond.setOnClickListener { goToSecondFragment() }
+    }
+
+    /**
+     * Navigates to the second fragment from the current fragment.
+     *
+     * This function uses the NavController to navigate from the current fragment to the second fragment.
+     * It specifies the action to navigate from the current destination (firstNavigationFragment) to the second destination (secondNavigationFragment).
+     */
+    private fun goToSecondFragment() {
+        findNavController().navigate(R.id.action_firstNavigationFragment_to_secondNavigationFragment)
     }
 }

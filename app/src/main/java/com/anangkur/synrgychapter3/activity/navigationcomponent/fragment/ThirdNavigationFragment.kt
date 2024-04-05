@@ -23,7 +23,19 @@ class ThirdNavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val name = ThirdNavigationFragmentArgs.fromBundle(arguments as Bundle).name
-        binding.tvName.text = "Namanya: $name"
+        binding.tvName.text = "Namanya: ${getName()}"
+    }
+
+    /**
+     * Retrieves the name argument passed to the third fragment.
+     *
+     * This function extracts and returns the name argument passed to the third fragment.
+     * It retrieves the argument using the generated NavArgs class (ThirdNavigationFragmentArgs)
+     * and the fromBundle method from the fragment's arguments Bundle.
+     *
+     * @return The name argument passed to the third fragment.
+     */
+    private fun getName(): String {
+        return ThirdNavigationFragmentArgs.fromBundle(arguments as Bundle).name
     }
 }

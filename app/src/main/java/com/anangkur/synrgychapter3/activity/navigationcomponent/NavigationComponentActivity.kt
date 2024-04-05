@@ -23,7 +23,16 @@ class NavigationComponentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(viewBinding.root)
+    }
 
+    /**
+     * Sets up navigation component with the app bar for the current activity.
+     *
+     * This function finds the NavHostFragment associated with the navigation host fragment container,
+     * retrieves the NavController from the NavHostFragment, and sets up the app bar with the NavController.
+     * If the NavHostFragment is not found, the function returns without performing any action.
+     */
+    private fun setupNavigationComponentWithAppBar() {
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment? ?: return
         setupActionBarWithNavController(host.navController)
     }

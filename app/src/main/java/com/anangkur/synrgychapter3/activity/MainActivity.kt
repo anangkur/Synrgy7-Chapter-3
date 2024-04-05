@@ -72,6 +72,13 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "setup toolbar")
     }
 
+    /**
+     * Handles the result callback from the SecondActivity.
+     * If the result code indicates success, retrieves the result string from the Intent extras,
+     * then displays it using a Snackbar.
+     *
+     * @param callback The activity result containing the result code and data.
+     */
     private fun handleSecondActivityResultCallback(callback: ActivityResult) {
         if (callback.resultCode == Activity.RESULT_OK) {
             val result = callback.data?.getStringExtra(SecondActivity.EXTRA_STRING)
@@ -81,6 +88,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Opens the SecondActivity and passes data to it using different methods.
+     *
+     * Currently, it demonstrates passing Parcelable data to SecondActivity using ActivityResultLauncher.
+     * You can also find commented-out code snippets demonstrating other methods like passing Serializable data,
+     * passing data through Bundle, and passing data directly as extras in the Intent.
+     *
+     * Uncomment and use the appropriate method as needed based on the data type and requirements.
+     */
     private fun openSecondActivity() {
         val parcelable = DataParcelable("ini adalah data parcelable", 100)
         secondActivityResult.launch(
@@ -98,10 +114,22 @@ class MainActivity : AppCompatActivity() {
         // Snackbar.make(activityMainBinding.root, "test button 1", Snackbar.LENGTH_SHORT).show()
     }
 
+    /**
+     * Opens the ThirdActivity.
+     *
+     * This function starts the ThirdActivity by calling its startActivity method,
+     * without passing any additional data.
+     */
     private fun openThirdActivity() {
         ThirdActivity.startActivity(this)
     }
 
+    /**
+     * Opens the NavigationComponentActivity.
+     *
+     * This function starts the NavigationComponentActivity by calling its startActivity method,
+     * without passing any additional data.
+     */
     private fun openNavigationComponentActivity() {
         NavigationComponentActivity.startActivity(this)
     }
