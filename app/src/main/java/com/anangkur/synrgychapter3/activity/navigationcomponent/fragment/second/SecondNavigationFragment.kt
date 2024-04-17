@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment
+package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.data.Movie
 import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
-import com.google.android.material.snackbar.Snackbar
 
 class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
@@ -114,7 +115,8 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
      * with the constructed action.
      */
     private fun goToThirdFragment(data: Movie) {
-        val actionToThirdFragment = SecondNavigationFragmentDirections.actionSecondNavigationFragmentToThirdNavigationFragment()
+        val actionToThirdFragment =
+            com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.SecondNavigationFragmentDirections.actionSecondNavigationFragmentToThirdNavigationFragment()
         actionToThirdFragment.title = data.title
         actionToThirdFragment.description = data.description
         actionToThirdFragment.image = data.image

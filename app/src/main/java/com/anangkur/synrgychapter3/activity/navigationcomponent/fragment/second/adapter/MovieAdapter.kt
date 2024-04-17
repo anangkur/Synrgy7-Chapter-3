@@ -1,8 +1,10 @@
-package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment
+package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.viewholder.MovieViewHolder
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.data.Movie
 import com.anangkur.synrgychapter3.databinding.ItemMovieBinding
 
 class MovieAdapter(

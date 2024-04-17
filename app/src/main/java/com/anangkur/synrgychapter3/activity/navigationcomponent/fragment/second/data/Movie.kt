@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment
+package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.data
 
 data class Movie(
     val image: String,
