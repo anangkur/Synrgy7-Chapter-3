@@ -31,8 +31,16 @@
         android:label="ThirdNavigationFragment"
         tools:layout="@layout/fragment_third_navigation">
         <argument
-            android:name="name"
+            android:name="title"
             app:argType="string"
-            android:defaultValue="Namanya Kosong" />
+            android:defaultValue="" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="image"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 </navigation>

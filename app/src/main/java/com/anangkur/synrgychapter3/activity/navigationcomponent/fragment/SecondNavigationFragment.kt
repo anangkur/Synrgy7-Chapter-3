@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
+import com.google.android.material.snackbar.Snackbar
 
-class SecondNavigationFragment : Fragment() {
+class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
     private lateinit var binding: FragmentSecondNavigationBinding
+    private val movieAdapter = MovieAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +31,76 @@ class SecondNavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonGoToThird.setOnClickListener { validateName() }
+        // binding.buttonGoToThird.setOnClickListener { validateName() }
+
+        binding.recyclerView.adapter = movieAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(
+            view.context,
+            RecyclerView.VERTICAL,
+            false,
+        )
+        binding.recyclerView.itemAnimator = DefaultItemAnimator()
+
+        movieAdapter.submitList(retrieveMovieData())
+        binding.swipeRefresh.setOnRefreshListener {
+            movieAdapter.submitList(retrieveMovieData())
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
+    private fun retrieveMovieData(): List<Movie> {
+        return listOf(
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+                title = "Dune: Part Two",
+                description = "Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, Paul endeavors to prevent a terrible future only he can foresee.",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/AnsSKR9LuK0T9bAOcPVA3PUvyWj.jpg",
+                title = "Fallout",
+                description = "",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/fdZpvODTX5wwkD0ikZNaClE4AoW.jpg",
+                title = "Immaculate",
+                description = ""
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+                title = "Dune",
+                description = "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg",
+                title = "Shōgun",
+                description = "",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
+                title = "Civil War",
+                description = "",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/zAxObqiOEooIuQtH338b8zOaFEu.jpg",
+                title = "The Sympathizer",
+                description = "",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/v9sk7CPhDXJKSkQIegVSBQ5nJnV.jpg",
+                title = "Kung Fu Panda 4",
+                description = "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past. movie HD QUALITY, open this link leakedcinema.com",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/6faYaQyiBPhqAizldJKq21mIVaE.jpg",
+                title = "Ghostbusters: Frozen Empire",
+                description = "",
+            ),
+            Movie(
+                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/8BYT4D0E0f1qFb9WfJPH4YUirL.jpg",
+                title = "Woody Woodpecker Goes to Camp",
+                description = "",
+            )
+        )
     }
 
     /**
@@ -38,9 +113,11 @@ class SecondNavigationFragment : Fragment() {
      * Finally, it uses the NavController associated with the current fragment to perform the navigation
      * with the constructed action.
      */
-    private fun goToThirdFragment() {
+    private fun goToThirdFragment(data: Movie) {
         val actionToThirdFragment = SecondNavigationFragmentDirections.actionSecondNavigationFragmentToThirdNavigationFragment()
-        actionToThirdFragment.name = binding.etName.text.toString()
+        actionToThirdFragment.title = data.title
+        actionToThirdFragment.description = data.description
+        actionToThirdFragment.image = data.image
         findNavController().navigate(actionToThirdFragment)
     }
 
@@ -53,12 +130,12 @@ class SecondNavigationFragment : Fragment() {
      * and proceeds to navigate to the third fragment.
      */
     private fun validateName() {
-        if (binding.etName.text.isNullOrEmpty()) {
-            setErrorName("tidak boleh kosong")
-        } else {
-            setErrorName(null)
-            goToThirdFragment()
-        }
+//        if (binding.etName.text.isNullOrEmpty()) {
+//            setErrorName("tidak boleh kosong")
+//        } else {
+//            setErrorName(null)
+//            goToThirdFragment()
+//        }
     }
 
     /**
@@ -73,7 +150,11 @@ class SecondNavigationFragment : Fragment() {
      *              to clear any existing error message and disable the error state.
      */
     private fun setErrorName(error: String?) {
-        binding.tilName.isErrorEnabled = !error.isNullOrEmpty()
-        binding.tilName.error = error
+//        binding.tilName.isErrorEnabled = !error.isNullOrEmpty()
+//        binding.tilName.error = error
+    }
+
+    override fun onClickMovie(data: Movie) {
+        goToThirdFragment(data)
     }
 }

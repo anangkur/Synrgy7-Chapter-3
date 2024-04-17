@@ -44,6 +44,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
+    implementation(libs.coil)
+    implementation(libs.androidx.swiperefreshlayout)
 
     testImplementation(libs.junit)
 

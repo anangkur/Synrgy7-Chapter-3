@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.anangkur.synrgychapter3.R
 import com.anangkur.synrgychapter3.databinding.ActivityNavigationComponentBinding
@@ -23,6 +25,8 @@ class NavigationComponentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(viewBinding.root)
+
+        setupNavigationComponentWithAppBar()
     }
 
     /**
@@ -35,5 +39,10 @@ class NavigationComponentActivity : AppCompatActivity() {
     private fun setupNavigationComponentWithAppBar() {
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment? ?: return
         setupActionBarWithNavController(host.navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        return host.navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
