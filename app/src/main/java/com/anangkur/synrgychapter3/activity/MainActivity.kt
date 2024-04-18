@@ -7,6 +7,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.activity.navigationcomponent.NavigationComponentActivity
+import com.anangkur.synrgychapter3.activity.navigationcomponent2.NavigationComponent2Activity
 import com.anangkur.synrgychapter3.activity.third.ThirdActivity
 import com.anangkur.synrgychapter3.data.DataParcelable
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.button1.setOnClickListener { openSecondActivity() }
         activityMainBinding.button2.setOnClickListener { openThirdActivity() }
         activityMainBinding.buttonNavigationComponent.setOnClickListener { openNavigationComponentActivity() }
+        activityMainBinding.buttonNavigationComponent2.setOnClickListener { openNavigationComponentActivity2() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -132,5 +134,15 @@ class MainActivity : AppCompatActivity() {
      */
     private fun openNavigationComponentActivity() {
         NavigationComponentActivity.startActivity(this)
+    }
+
+    /**
+     * Opens the NavigationComponentActivity.
+     *
+     * This function starts the NavigationComponentActivity by calling its startActivity method,
+     * without passing any additional data.
+     */
+    private fun openNavigationComponentActivity2() {
+        NavigationComponent2Activity.startActivity(this)
     }
 }

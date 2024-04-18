@@ -42,7 +42,7 @@ class ThirdActivity : AppCompatActivity() {
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .add(R.id.fragment_container, fragment)
             .commit()
     }
 

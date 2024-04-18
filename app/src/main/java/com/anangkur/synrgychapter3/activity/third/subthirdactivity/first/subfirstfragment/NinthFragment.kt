@@ -24,6 +24,8 @@ class NinthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.text.text = "ini adalah fragment sembilan"
+        val data = arguments?.getString("data")
+        val dataSafeArgs = NinthFragmentArgs.fromBundle(arguments as Bundle)
+        viewBinding.text.text = "ini adalah fragment sembilan | ${dataSafeArgs.data}"
     }
 }

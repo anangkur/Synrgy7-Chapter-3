@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.databinding.FragmentThirdNavigationBinding
 
 class ThirdNavigationFragment : Fragment() {
 
     private lateinit var binding: FragmentThirdNavigationBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

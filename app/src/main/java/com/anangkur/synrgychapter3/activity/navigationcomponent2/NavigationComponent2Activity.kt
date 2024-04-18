@@ -1,0 +1,45 @@
+package com.anangkur.synrgychapter3.activity.navigationcomponent2
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.anangkur.synrgychapter3.R
+import com.anangkur.synrgychapter3.databinding.ActivityNavigationComponent2Binding
+
+class NavigationComponent2Activity : AppCompatActivity() {
+
+    companion object {
+        fun startActivity(context: Context) {
+            context.startActivity(Intent(context, NavigationComponent2Activity::class.java))
+        }
+    }
+
+    private val viewBinding by lazy { ActivityNavigationComponent2Binding.inflate(layoutInflater) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(viewBinding.root)
+
+        setupNavigationComponentWithAppBar()
+    }
+
+    /**
+     * Sets up navigation component with the app bar for the current activity.
+     *
+     * This function finds the NavHostFragment associated with the navigation host fragment container,
+     * retrieves the NavController from the NavHostFragment, and sets up the app bar with the NavController.
+     * If the NavHostFragment is not found, the function returns without performing any action.
+     */
+    private fun setupNavigationComponentWithAppBar() {
+        val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment? ?: return
+        setupActionBarWithNavController(host.navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+        return host.navController.navigateUp() || super.onSupportNavigateUp()
+    }
+}

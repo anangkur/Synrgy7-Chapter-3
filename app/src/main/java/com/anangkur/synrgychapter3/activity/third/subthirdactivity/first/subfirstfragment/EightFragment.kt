@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.anangkur.synrgychapter3.R
 import com.anangkur.synrgychapter3.databinding.FragmentFirstBinding
 
 class EightFragment : Fragment() {
@@ -25,5 +27,12 @@ class EightFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewBinding.text.text = "ini adalah fragment delapan"
+        val bundle = Bundle()
+        val data = "ini adalah data dari fragment 8"
+        bundle.putString("data", data)
+        viewBinding.button.setOnClickListener {
+            val action = EightFragmentDirections.actionEightFragmentToNinthFragment(data)
+            findNavController().navigate(action)
+        }
     }
 }
