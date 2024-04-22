@@ -34,6 +34,12 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
 }
 
@@ -51,4 +57,10 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui.preview)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.activity)
 }
