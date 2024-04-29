@@ -20,6 +20,7 @@ class NavigationComponentActivity : AppCompatActivity() {
     }
 
     private val viewBinding by lazy { ActivityNavigationComponentBinding.inflate(layoutInflater) }
+    private val model = NavigationComponentModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,8 @@ class NavigationComponentActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         setupNavigationComponentWithAppBar()
+
+        val data = model.fetchData()
     }
 
     /**
