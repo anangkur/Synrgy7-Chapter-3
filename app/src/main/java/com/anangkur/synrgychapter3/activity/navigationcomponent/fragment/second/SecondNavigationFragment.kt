@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,8 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
     private lateinit var binding: FragmentSecondNavigationBinding
     private val movieAdapter = MovieAdapter(this)
+
+    private val secondNavigationViewModel: SecondNavigationViewModel by viewModels<SecondNavigationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +42,20 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
         refreshData()
         binding.swipeRefresh.setOnRefreshListener { refreshData() }
+
+        secondNavigationViewModel.movies.observe(viewLifecycleOwner) { movies ->
+            // Submit a new list of movies to the movie adapter
+            movieAdapter.submitList(movies)
+            binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
     }
 
     /**
@@ -49,10 +66,8 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
      * swipe-to-refresh indicator by setting `isRefreshing` to false on the binding's swipeRefresh view.
      */
     private fun refreshData() {
-        // Submit a new list of movies to the movie adapter
-        movieAdapter.submitList(retrieveMovieData())
         // Disable the swipe-to-refresh indicator
-        binding.swipeRefresh.isRefreshing = false
+        secondNavigationViewModel.retrieveMovieData()
     }
 
 
@@ -80,72 +95,6 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
 
     /**
-     * Retrieves a list of sample movie data.
-     *
-     * This function returns a list of sample movie data, each containing an image URL, a title, and a description.
-     * The sample movie data is provided for demonstration purposes and can be used to populate UI components such
-     * as RecyclerViews with movie items.
-     *
-     * @return A list of Movie objects containing sample movie data.
-     */
-    private fun retrieveMovieData(): List<Movie> {
-        // Create and return a list of sample movie data
-        return listOf(
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
-                title = "Dune: Part Two",
-                description = "Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, Paul endeavors to prevent a terrible future only he can foresee."
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/AnsSKR9LuK0T9bAOcPVA3PUvyWj.jpg",
-                title = "Fallout",
-                description = ""
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/fdZpvODTX5wwkD0ikZNaClE4AoW.jpg",
-                title = "Immaculate",
-                description = ""
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-                title = "Dune",
-                description = "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive."
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg",
-                title = "Shōgun",
-                description = ""
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
-                title = "Civil War",
-                description = ""
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/zAxObqiOEooIuQtH338b8zOaFEu.jpg",
-                title = "The Sympathizer",
-                description = ""
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/v9sk7CPhDXJKSkQIegVSBQ5nJnV.jpg",
-                title = "Kung Fu Panda 4",
-                description = "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past. movie HD QUALITY, open this link leakedcinema.com"
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/6faYaQyiBPhqAizldJKq21mIVaE.jpg",
-                title = "Ghostbusters: Frozen Empire",
-                description = ""
-            ),
-            Movie(
-                image = "https://media.themoviedb.org/t/p/w440_and_h660_face/8BYT4D0E0f1qFb9WfJPH4YUirL.jpg",
-                title = "Woody Woodpecker Goes to Camp",
-                description = ""
-            )
-        )
-    }
-
-
-    /**
      * Navigates from the second fragment to the third fragment, passing data.
      *
      * This function initiates a navigation action from the second fragment to the third fragment
@@ -156,8 +105,7 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
      * with the constructed action.
      */
     private fun goToThirdFragment(data: Movie) {
-        val actionToThirdFragment = SecondNavigationFragmentDirections
-            .actionSecondNavigationFragmentToThirdNavigationFragment()
+        val actionToThirdFragment = SecondNavigationFragmentDirections.actionSecondNavigationFragmentToThirdNavigationFragment()
         actionToThirdFragment.title = data.title
         actionToThirdFragment.description = data.description
         actionToThirdFragment.image = data.image

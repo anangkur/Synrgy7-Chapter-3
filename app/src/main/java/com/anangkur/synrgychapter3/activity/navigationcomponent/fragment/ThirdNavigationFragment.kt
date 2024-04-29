@@ -15,6 +15,8 @@ class ThirdNavigationFragment : Fragment() {
 
     private lateinit var binding: FragmentThirdNavigationBinding
 
+    private val logic = ThirdNavigationLogic()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +33,8 @@ class ThirdNavigationFragment : Fragment() {
         binding.tvName.text = getName()
         binding.textDescription.text = getDescription()
         binding.imagePoster.load(getImage())
+
+        logic.title = getName()
 
         binding.buttonGoogle.setOnClickListener { searchMovie(getName()) }
     }
@@ -62,7 +66,7 @@ class ThirdNavigationFragment : Fragment() {
 
     private fun searchMovie(title: String) {
         val intent = Intent(Intent.ACTION_VIEW)
-        intent.setData(Uri.parse("https://www.google.com/search?q=$title"))
+        intent.setData(Uri.parse(logic.getUrlGoogle(title)))
         startActivity(intent)
     }
 }
