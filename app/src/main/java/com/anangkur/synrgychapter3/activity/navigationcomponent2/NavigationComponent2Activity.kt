@@ -3,13 +3,15 @@ package com.anangkur.synrgychapter3.activity.navigationcomponent2
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.anangkur.synrgychapter3.R
+import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.data.Movie
 import com.anangkur.synrgychapter3.databinding.ActivityNavigationComponent2Binding
 
-class NavigationComponent2Activity : AppCompatActivity() {
+class NavigationComponent2Activity : AppCompatActivity(), NavigationComponent2ViewContract {
 
     companion object {
         fun startActivity(context: Context) {
@@ -18,12 +20,14 @@ class NavigationComponent2Activity : AppCompatActivity() {
     }
 
     private val viewBinding by lazy { ActivityNavigationComponent2Binding.inflate(layoutInflater) }
+    private val presenter = NavigationComponent2Presenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
 
         setupNavigationComponentWithAppBar()
+        presenter.fetchData()
     }
 
     /**
@@ -41,5 +45,21 @@ class NavigationComponent2Activity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
         return host.navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onDataReceived(data: List<Movie>) {
+        Toast.makeText(this, "data diterima: ${data.size} todal data", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDataError(error: Throwable) {
+        Toast.makeText(this, "data error: ${error.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onLoading(isLoading: Boolean) {
+        if (isLoading){
+            Toast.makeText(this, "loading...", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "loading selesai", Toast.LENGTH_SHORT).show()
+        }
     }
 }
