@@ -15,8 +15,12 @@
         android:theme="@style/Theme.SynrgyChapter3"
         tools:targetApi="31">
         <activity
-            android:name=".activity.mvvm.MvvmActivity"
-            android:exported="true">
+            android:name=".ui.activity.mvvm.MvvmActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,21 +28,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.activity.MainActivity2"
             android:exported="false">
         </activity>
         <activity
-            android:name=".activity.MainActivity2"
-            android:exported="false">
-        </activity>
-        <activity
-            android:name=".activity.MainComposeActivity"
+            android:name=".ui.activity.MainComposeActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar">
         </activity>
-        <activity android:name=".activity.navigationcomponent2.NavigationComponent2Activity"/>
-        <activity android:name=".activity.SecondActivity"/>
-        <activity android:name=".activity.third.ThirdActivity"/>
-        <activity android:name=".activity.navigationcomponent.NavigationComponentActivity"/>
+        <activity android:name=".ui.activity.navigationcomponent2.NavigationComponent2Activity"/>
+        <activity android:name=".ui.activity.SecondActivity"/>
+        <activity android:name=".ui.activity.third.ThirdActivity"/>
+        <activity android:name=".ui.activity.navigationcomponent.NavigationComponentActivity"/>
     </application>
 </manifest>

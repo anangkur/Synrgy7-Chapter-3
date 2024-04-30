@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/firstNavigationFragment"
-        android:name="com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.FirstNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.FirstNavigationFragment"
         android:label="FirstNavigationFragment"
         tools:layout="@layout/fragment_first_navigation">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondNavigationFragment"
-        android:name="com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.SecondNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.SecondNavigationFragment"
         android:label="SecondNavigationFragment"
         tools:layout="@layout/fragment_second_navigation">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/thirdNavigationFragment"
-        android:name="com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.ThirdNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.ThirdNavigationFragment"
         android:label="ThirdNavigationFragment"
         tools:layout="@layout/fragment_third_navigation">
         <argument

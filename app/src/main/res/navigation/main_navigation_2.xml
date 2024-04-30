@@ -6,7 +6,7 @@
     app:startDestination="@id/eightFragment">
     <fragment
         android:id="@+id/eightFragment"
-        android:name="com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.EightFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.third.subthirdactivity.first.subfirstfragment.EightFragment"
         android:label="EightFragment"
         tools:layout="@layout/fragment_first">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/ninthFragment"
-        android:name="com.anangkur.synrgychapter3.activity.third.subthirdactivity.first.subfirstfragment.NinthFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.third.subthirdactivity.first.subfirstfragment.NinthFragment"
         android:label="NinthFragment"
         tools:layout="@layout/fragment_first">
         <argument
