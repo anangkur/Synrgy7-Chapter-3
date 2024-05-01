@@ -1,6 +1,6 @@
-package com.anangkur.synrgychapter3.data.remote
+package com.anangkur.synrgychapter3.data.datasource.remote
 
-import com.anangkur.synrgychapter3.data.MovieRemoteDataSource
+import com.anangkur.synrgychapter3.data.datasource.MovieRemoteDataSource
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
 
 class MovieRemoteDataSourceImpl : MovieRemoteDataSource {

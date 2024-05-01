@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.anangkur.synrgychapter3.data.MovieLocalDataSource
-import com.anangkur.synrgychapter3.data.MovieRemoteDataSource
+import com.anangkur.synrgychapter3.data.datasource.MovieLocalDataSource
+import com.anangkur.synrgychapter3.data.datasource.MovieRemoteDataSource
 import com.anangkur.synrgychapter3.data.MovieRepositoryImpl
-import com.anangkur.synrgychapter3.data.local.MovieLocalDataSourceImpl
-import com.anangkur.synrgychapter3.data.remote.MovieRemoteDataSourceImpl
+import com.anangkur.synrgychapter3.data.datasource.local.MovieLocalDataSourceImpl
+import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.domain.MovieRepository
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
 

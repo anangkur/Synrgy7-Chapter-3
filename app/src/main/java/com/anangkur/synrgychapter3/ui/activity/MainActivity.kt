@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
+import com.anangkur.synrgychapter3.ui.activity.login.LoginActivity
 import com.anangkur.synrgychapter3.ui.activity.mvvm.MvvmActivity
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.NavigationComponentActivity
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent2.NavigationComponent2Activity
@@ -28,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         ::handleSecondActivityResultCallback,
     )
 
+    private val viewModel by viewModels<MainViewModel>() {
+        MainViewModel.provideFactory(this, this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activityMainBinding.root)
@@ -38,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonNavigationComponent2.setOnClickListener { openNavigationComponentActivity2() }
         activityMainBinding.buttonDataBinding.setOnClickListener { openDataBinding() }
         activityMainBinding.buttonMvvm.setOnClickListener { openMvvm() }
+        activityMainBinding.buttonLogout.setOnClickListener { logout() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -156,5 +163,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun openMvvm() {
         startActivity(Intent(this, MvvmActivity::class.java))
+    }
+
+    private fun logout() {
+        viewModel.logout()
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 }
