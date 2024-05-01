@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.data
+package com.anangkur.synrgychapter3.data.repository
 
 import com.anangkur.synrgychapter3.data.datasource.MovieLocalDataSource
 import com.anangkur.synrgychapter3.data.datasource.MovieRemoteDataSource

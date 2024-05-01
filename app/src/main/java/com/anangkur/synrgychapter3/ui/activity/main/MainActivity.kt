@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.ui.activity
+package com.anangkur.synrgychapter3.ui.activity.main
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
+import com.anangkur.synrgychapter3.ui.activity.main2.MainActivity2
+import com.anangkur.synrgychapter3.ui.activity.second.SecondActivity
 import com.anangkur.synrgychapter3.ui.activity.login.LoginActivity
 import com.anangkur.synrgychapter3.ui.activity.mvvm.MvvmActivity
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.NavigationComponentActivity
@@ -94,7 +96,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun handleSecondActivityResultCallback(callback: ActivityResult) {
         if (callback.resultCode == Activity.RESULT_OK) {
-            val result = callback.data?.getStringExtra(com.anangkur.synrgychapter3.ui.activity.SecondActivity.Companion.EXTRA_STRING)
+            val result = callback.data?.getStringExtra(SecondActivity.EXTRA_STRING)
             result?.let {
                 Snackbar.make(activityMainBinding.root, it, Snackbar.LENGTH_SHORT).show()
             }
@@ -113,8 +115,8 @@ class MainActivity : AppCompatActivity() {
     private fun openSecondActivity() {
         val parcelable = DataParcelable("ini adalah data parcelable", 100)
         secondActivityResult.launch(
-            com.anangkur.synrgychapter3.ui.activity.SecondActivity.Companion.provideIntent(this)
-                .putExtra(com.anangkur.synrgychapter3.ui.activity.SecondActivity.Companion.EXTRA_PARCELABLE, parcelable)
+            SecondActivity.provideIntent(this)
+                .putExtra(SecondActivity.EXTRA_PARCELABLE, parcelable)
         )
         // val dataSerializable = DataSerializable("ini adalah data serializable", 100)
         // SecondActivity.startActivity(this, dataSerializable)

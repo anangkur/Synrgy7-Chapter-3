@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.ui.activity
+package com.anangkur.synrgychapter3.ui.activity.second
 
 import android.app.Activity
 import android.content.ActivityNotFoundException

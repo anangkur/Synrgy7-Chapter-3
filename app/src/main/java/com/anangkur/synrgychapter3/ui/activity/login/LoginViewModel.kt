@@ -8,7 +8,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.savedstate.SavedStateRegistryOwner
-import com.anangkur.synrgychapter3.data.AuthRepositoryImpl
+import com.anangkur.synrgychapter3.data.repository.AuthRepositoryImpl
 import com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.local.SharedPreferencesFactory
 import com.anangkur.synrgychapter3.data.datasource.remote.AuthRemoteDataSourceImpl

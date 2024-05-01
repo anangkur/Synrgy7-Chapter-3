@@ -29,20 +29,20 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.main.MainActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity2"
+            android:name=".ui.activity.main2.MainActivity2"
             android:exported="false">
         </activity>
         <activity
-            android:name=".ui.activity.MainComposeActivity"
+            android:name=".ui.activity.maincompose.MainComposeActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.DayNight.NoActionBar">
         </activity>
         <activity android:name=".ui.activity.navigationcomponent2.NavigationComponent2Activity"/>
-        <activity android:name=".ui.activity.SecondActivity"/>
+        <activity android:name=".ui.activity.second.SecondActivity"/>
         <activity android:name=".ui.activity.third.ThirdActivity"/>
         <activity android:name=".ui.activity.navigationcomponent.NavigationComponentActivity"/>
     </application>

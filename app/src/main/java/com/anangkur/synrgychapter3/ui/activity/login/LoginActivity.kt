@@ -5,19 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.anangkur.synrgychapter3.data.AuthRepositoryImpl
-import com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl
-import com.anangkur.synrgychapter3.data.datasource.local.SharedPreferencesFactory
-import com.anangkur.synrgychapter3.data.datasource.remote.AuthRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.databinding.ActivityLoginBinding
-import com.anangkur.synrgychapter3.domain.AuthRepository
-import com.anangkur.synrgychapter3.ui.activity.MainActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import com.anangkur.synrgychapter3.ui.activity.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 

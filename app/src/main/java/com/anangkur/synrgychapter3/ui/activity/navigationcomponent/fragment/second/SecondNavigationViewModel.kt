@@ -8,7 +8,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.anangkur.synrgychapter3.data.datasource.MovieLocalDataSource
 import com.anangkur.synrgychapter3.data.datasource.MovieRemoteDataSource
-import com.anangkur.synrgychapter3.data.MovieRepositoryImpl
+import com.anangkur.synrgychapter3.data.repository.MovieRepositoryImpl
 import com.anangkur.synrgychapter3.data.datasource.local.MovieLocalDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.domain.MovieRepository
