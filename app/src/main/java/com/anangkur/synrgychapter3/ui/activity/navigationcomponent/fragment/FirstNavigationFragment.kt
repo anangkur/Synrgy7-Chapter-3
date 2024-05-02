@@ -27,6 +27,7 @@ class FirstNavigationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonGoToSecond.setOnClickListener { goToSecondFragment() }
+        binding.buttonGoToFavorite.setOnClickListener { goToFavoriteFragment() }
     }
 
     /**
@@ -37,5 +38,9 @@ class FirstNavigationFragment : Fragment() {
      */
     private fun goToSecondFragment() {
         findNavController().navigate(R.id.action_firstNavigationFragment_to_secondNavigationFragment)
+    }
+
+    private fun goToFavoriteFragment() {
+        findNavController().navigate(R.id.action_firstNavigationFragment_to_favoriteFragment)
     }
 }

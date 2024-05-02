@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second
+package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.favorite
 
 import android.content.Context
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import androidx.savedstate.SavedStateRegistryOwner
 import com.anangkur.synrgychapter3.data.datasource.local.MovieLocalDataSourceImpl
@@ -13,10 +14,12 @@ import com.anangkur.synrgychapter3.data.datasource.local.room.RoomDatabase
 import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.data.repository.MovieRepositoryImpl
 import com.anangkur.synrgychapter3.domain.MovieRepository
+import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.SecondNavigationViewModel
 import com.anangkur.synrgychapter3.ui.dataclass.Movie
+import kotlinx.coroutines.launch
 
-class SecondNavigationViewModel(
-    private val repository: MovieRepository,
+class FavoriteViewModel(
+    private val movieRepository: MovieRepository,
 ) : ViewModel() {
 
     companion object {
@@ -42,32 +45,32 @@ class SecondNavigationViewModel(
                             movieDao = roomDatabase.movieDao(),
                         ),
                     )
-                    return SecondNavigationViewModel(
-                        repository = movieRepository,
+                    return FavoriteViewModel(
+                        movieRepository = movieRepository,
                     ) as T
                 }
             }
     }
 
-    /**
-     * Retrieves a list of sample movie data.
-     *
-     * This function returns a list of sample movie data, each containing an image URL, a title, and a description.
-     * The sample movie data is provided for demonstration purposes and can be used to populate UI components such
-     * as RecyclerViews with movie items.
-     *
-     * @return A list of Movie objects containing sample movie data.
-     */
-    private val _movies: MutableLiveData<List<Movie>> = MutableLiveData()
+    private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> = _movies
 
-    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
+    private val _error = MutableLiveData<Throwable>()
+    val error: LiveData<Throwable> = _error
+
+    private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    fun retrieveMovieData() {
-        // Create and return a list of sample movie data
-        _loading.value = true
-        _movies.value = repository.fetchData()
-        _loading.value = false
+    fun getMovieFromLocal() {
+        viewModelScope.launch {
+            try {
+                _loading.value = true
+                _movies.value = movieRepository.loadAllMovie()
+                _loading.value = false
+            } catch (throwable: Throwable) {
+                _loading.value = false
+                _error.value = throwable
+            }
+        }
     }
 }

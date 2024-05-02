@@ -65,6 +65,9 @@ class ThirdNavigationLogic(
         return emptyList()
     }
 
+    private val _insertMovie = MutableLiveData<Boolean>()
+    val insertMovie: LiveData<Boolean> = _insertMovie
+
     fun saveMovieToFavorite(
         name: String,
         description: String,
@@ -72,23 +75,36 @@ class ThirdNavigationLogic(
         id: Int = -1,
     ) {
         viewModelScope.launch {
-            val movie = Movie(
-                image = image,
-                title = name,
-                description = description,
-                id = if (id == -1) {
-                    null
-                } else {
-                    id
-                },
-            )
-            movieRepository.saveFavorite(movie)
+            try {
+                val movie = Movie(
+                    image = image,
+                    title = name,
+                    description = description,
+                    id = if (id == -1) {
+                        null
+                    } else {
+                        id
+                    },
+                )
+                movieRepository.saveFavorite(movie)
+                _insertMovie.value = true
+            } catch (throwable: Throwable) {
+                _error.value = throwable
+            }
         }
     }
 
+    private val _deleteMovie = MutableLiveData<Boolean>()
+    val deleteMovie: LiveData<Boolean> = _deleteMovie
+
     fun deleteMovieFromFavorite(movie: Movie) {
         viewModelScope.launch {
-            movieRepository.deleteMovie(movie)
+            try {
+                movieRepository.deleteMovie(movie)
+                _deleteMovie.value = true
+            } catch (throwable: Throwable) {
+                _error.value = throwable
+            }
         }
     }
 

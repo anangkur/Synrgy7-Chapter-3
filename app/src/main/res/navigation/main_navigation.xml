@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_firstNavigationFragment_to_secondNavigationFragment"
             app:destination="@id/secondNavigationFragment" />
+        <action
+            android:id="@+id/action_firstNavigationFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/secondNavigationFragment"
@@ -46,5 +49,14 @@
             android:name="id"
             app:argType="integer"
             android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_second_navigation">
+        <action
+            android:id="@+id/action_favoriteFragment_to_thirdNavigationFragment"
+            app:destination="@id/thirdNavigationFragment" />
     </fragment>
 </navigation>

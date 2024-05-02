@@ -53,6 +53,16 @@ class ThirdNavigationFragment : Fragment() {
             }
         }
 
+        logic.insertMovie.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Berhasil ditambahkan ke favorit", Toast.LENGTH_SHORT).show()
+            binding.buttonFavorite.text = "Hapus dari Favorit"
+        }
+
+        logic.deleteMovie.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "Berhasil dihapus dari favorit", Toast.LENGTH_SHORT).show()
+            binding.buttonFavorite.text = "Tambahkan ke Favorit"
+        }
+
         binding.tvName.text = getName()
         binding.textDescription.text = getDescription()
         binding.imagePoster.load(getImage())

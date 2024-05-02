@@ -55,6 +55,13 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
             movieAdapter.submitList(movies)
             binding.swipeRefresh.isRefreshing = false
         }
+        secondNavigationViewModel.loading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
