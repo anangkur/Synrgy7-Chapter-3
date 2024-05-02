@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.anangkur.synrgychapter3.databinding.ItemMovieBinding
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
-import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 class MovieViewHolder(
     private val itemViewBinding: ItemMovieBinding,

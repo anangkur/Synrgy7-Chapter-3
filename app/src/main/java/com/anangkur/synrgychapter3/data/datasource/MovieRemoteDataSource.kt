@@ -1,6 +1,6 @@
 package com.anangkur.synrgychapter3.data.datasource
 
-import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 interface MovieRemoteDataSource {
     fun fetchData(): List<Movie>

@@ -12,6 +12,8 @@ coil = "2.6.0"
 swiperefreshlayout = "1.2.0-alpha01"
 composeBom = "2024.04.01"
 composeActivity = "1.8.2"
+room = "2.6.1"
+ksp = "1.9.23-1.0.20"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,9 +31,12 @@ compose-material = { group = "androidx.compose.material", name = "material" }
 compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigationComponent" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
-import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
@@ -22,7 +22,12 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
     private val movieAdapter = MovieAdapter(this)
 
     private val secondNavigationViewModel by viewModels<SecondNavigationViewModel>(
-        factoryProducer = { SecondNavigationViewModel.Factory },
+        factoryProducer = {
+            SecondNavigationViewModel.provideFactory(
+                owner = this,
+                context = requireActivity().applicationContext,
+            )
+        },
     )
 
     override fun onCreateView(

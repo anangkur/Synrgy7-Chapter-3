@@ -2,6 +2,7 @@ package com.anangkur.synrgychapter3.ui.activity.mvvm
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.data.datasource.local.SharedPreferencesFactory
 import com.anangkur.synrgychapter3.databinding.ActivityMvvmBinding
 
 class MvvmActivity : AppCompatActivity() {
@@ -9,6 +10,8 @@ class MvvmActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMvvmBinding.inflate(layoutInflater) }
     private val model = MvvmModel()
     private val viewModel = MvvmViewModel(model)
+
+    private val sharedPreferences = SharedPreferencesFactory().createSharedPreferences(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,5 +25,8 @@ class MvvmActivity : AppCompatActivity() {
         binding.buttonIncrement.setOnClickListener {
             viewModel.incrementData()
         }
+
+        sharedPreferences.edit().putString("test", "test value").apply()
+        val test = sharedPreferences.getString("test", null)
     }
 }

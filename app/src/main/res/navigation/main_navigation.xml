@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/thirdNavigationFragment"
-        android:name="com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.ThirdNavigationFragment"
+        android:name="com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.third.ThirdNavigationFragment"
         android:label="ThirdNavigationFragment"
         tools:layout="@layout/fragment_third_navigation">
         <argument
@@ -42,5 +42,9 @@
             android:name="image"
             app:argType="string"
             android:defaultValue="" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 </navigation>

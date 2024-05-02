@@ -1,7 +1,7 @@
 package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 class MovieDiffUtil : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {

@@ -1,7 +1,16 @@
 package com.anangkur.synrgychapter3.data.datasource
 
-import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.data.datasource.local.room.MovieEntity
+import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 interface MovieLocalDataSource {
     fun storeDataToLocalDb(data: Movie)
+
+    suspend fun insertMovie(movieEntity: MovieEntity)
+
+    suspend fun deleteMovie(movieEntity: MovieEntity)
+
+    suspend fun selectMovieById(id: Int): MovieEntity?
+
+    suspend fun selectAllMovies(): List<MovieEntity>
 }

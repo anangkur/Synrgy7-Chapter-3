@@ -34,6 +34,14 @@
         android:layout_margin="16dp"
         tools:text="@tools:sample/lorem/random"
         app:layout_constraintTop_toBottomOf="@id/tv_name"
+        app:layout_constraintBottom_toTopOf="@id/button_favorite"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorite"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@id/button_google"/>
 
     <com.google.android.material.button.MaterialButton

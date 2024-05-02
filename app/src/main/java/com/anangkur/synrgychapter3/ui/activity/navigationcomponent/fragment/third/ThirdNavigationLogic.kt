@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second
+package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.third
 
 import android.content.Context
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import androidx.savedstate.SavedStateRegistryOwner
 import com.anangkur.synrgychapter3.data.datasource.local.MovieLocalDataSourceImpl
@@ -13,17 +14,19 @@ import com.anangkur.synrgychapter3.data.datasource.local.room.RoomDatabase
 import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.data.repository.MovieRepositoryImpl
 import com.anangkur.synrgychapter3.domain.MovieRepository
+import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.SecondNavigationViewModel
 import com.anangkur.synrgychapter3.ui.dataclass.Movie
+import kotlinx.coroutines.launch
 
-class SecondNavigationViewModel(
-    private val repository: MovieRepository,
+class ThirdNavigationLogic(
+    private val movieRepository: MovieRepository,
 ) : ViewModel() {
 
     companion object {
         fun provideFactory(
             owner: SavedStateRegistryOwner,
             context: Context,
-        ): AbstractSavedStateViewModelFactory =
+        ) =
             object : AbstractSavedStateViewModelFactory(owner, null) {
                 @Suppress("UNCHECKED_CAST")
                 override fun <T : ViewModel> create(
@@ -42,26 +45,62 @@ class SecondNavigationViewModel(
                             movieDao = roomDatabase.movieDao(),
                         ),
                     )
-                    return SecondNavigationViewModel(
-                        repository = movieRepository,
+                    return ThirdNavigationLogic(
+                        movieRepository = movieRepository,
                     ) as T
                 }
             }
     }
 
-    /**
-     * Retrieves a list of sample movie data.
-     *
-     * This function returns a list of sample movie data, each containing an image URL, a title, and a description.
-     * The sample movie data is provided for demonstration purposes and can be used to populate UI components such
-     * as RecyclerViews with movie items.
-     *
-     * @return A list of Movie objects containing sample movie data.
-     */
-    private val _movies: MutableLiveData<List<Movie>> = MutableLiveData()
-    val movies: LiveData<List<Movie>> = _movies
-    fun retrieveMovieData() {
-        // Create and return a list of sample movie data
-        _movies.value = repository.fetchData()
+    private val _error = MutableLiveData<Throwable>()
+    val error: LiveData<Throwable> = _error
+
+    var title: String? = null
+
+    fun getUrlGoogle(title: String): String {
+        return "https://www.google.com/search?q=$title"
+    }
+
+    fun retrieveList(): List<Movie> {
+        return emptyList()
+    }
+
+    fun saveMovieToFavorite(
+        name: String,
+        description: String,
+        image: String,
+        id: Int = -1,
+    ) {
+        viewModelScope.launch {
+            val movie = Movie(
+                image = image,
+                title = name,
+                description = description,
+                id = if (id == -1) {
+                    null
+                } else {
+                    id
+                },
+            )
+            movieRepository.saveFavorite(movie)
+        }
+    }
+
+    fun deleteMovieFromFavorite(movie: Movie) {
+        viewModelScope.launch {
+            movieRepository.deleteMovie(movie)
+        }
+    }
+
+    private val _movieLocal = MutableLiveData<Movie?>()
+    val movieLocal: LiveData<Movie?> = _movieLocal
+    fun loadMovieFromFavorite(id: Int) {
+        viewModelScope.launch {
+            try {
+                _movieLocal.value = movieRepository.loadMovieById(id)
+            } catch (throwable: Throwable) {
+                _error.value = throwable
+            }
+        }
     }
 }

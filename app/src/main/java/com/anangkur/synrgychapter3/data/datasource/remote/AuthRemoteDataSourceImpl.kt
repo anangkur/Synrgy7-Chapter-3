@@ -6,11 +6,12 @@ import kotlinx.coroutines.delay
 
 class AuthRemoteDataSourceImpl : AuthRemoteDataSource {
 
-    private val users = listOf(
-        User(
-            userName = "anangkur",
-            password = "anangkur123",
-        ),
+    private val users
+        get() = listOf(
+            User(
+                userName = "anangkur",
+                password = "anangkur123",
+            ),
     )
 
     override suspend fun login(username: String, password: String): String {

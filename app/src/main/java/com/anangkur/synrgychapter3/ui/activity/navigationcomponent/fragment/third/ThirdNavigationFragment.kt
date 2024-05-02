@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment
+package com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.third
 
 import android.content.Intent
 import android.net.Uri
@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import coil.load
 import com.anangkur.synrgychapter3.databinding.FragmentThirdNavigationBinding
 
@@ -14,7 +16,9 @@ class ThirdNavigationFragment : Fragment() {
 
     private lateinit var binding: FragmentThirdNavigationBinding
 
-    private val logic = ThirdNavigationLogic()
+    private val logic by viewModels<ThirdNavigationLogic> {
+        ThirdNavigationLogic.provideFactory(this, requireActivity().applicationContext)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +33,26 @@ class ThirdNavigationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        logic.error.observe(viewLifecycleOwner) { error ->
+            Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+        }
+
+        logic.movieLocal.observe(viewLifecycleOwner) { movie ->
+            if (movie != null) {
+                binding.buttonFavorite.text = "Hapus dari Favorit"
+                binding.buttonFavorite.setOnClickListener { logic.deleteMovieFromFavorite(movie) }
+            } else {
+                binding.buttonFavorite.text = "Tambahkan ke Favorit"
+                binding.buttonFavorite.setOnClickListener {
+                    logic.saveMovieToFavorite(
+                        name = getName(),
+                        image = getImage(),
+                        description = getDescription(),
+                    )
+                }
+            }
+        }
+
         binding.tvName.text = getName()
         binding.textDescription.text = getDescription()
         binding.imagePoster.load(getImage())
@@ -36,6 +60,7 @@ class ThirdNavigationFragment : Fragment() {
         logic.title = getName()
 
         binding.buttonGoogle.setOnClickListener { searchMovie(getName()) }
+        logic.loadMovieFromFavorite(getArgId())
     }
 
     /**
@@ -59,8 +84,14 @@ class ThirdNavigationFragment : Fragment() {
         return getArgs().image
     }
 
+    private fun getArgId(): Int {
+        return getArgs().id
+    }
+
     private fun getArgs(): ThirdNavigationFragmentArgs {
-        return ThirdNavigationFragmentArgs.fromBundle(arguments as Bundle)
+        return ThirdNavigationFragmentArgs.fromBundle(
+            arguments as Bundle
+        )
     }
 
     private fun searchMovie(title: String) {

@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.anangkur.synrgychapter3.R
 import com.anangkur.synrgychapter3.databinding.ActivityNavigationComponent2Binding
-import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 class NavigationComponent2Activity : AppCompatActivity(), NavigationComponent2ViewContract {
 
