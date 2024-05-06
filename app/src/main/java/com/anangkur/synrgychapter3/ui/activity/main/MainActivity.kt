@@ -9,7 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
-import com.anangkur.synrgychapter3.ui.activity.WebViewActivity
+import com.anangkur.synrgychapter3.ui.activity.location.LocationActivity
+import com.anangkur.synrgychapter3.ui.activity.webview.WebViewActivity
 import com.anangkur.synrgychapter3.ui.activity.main2.MainActivity2
 import com.anangkur.synrgychapter3.ui.activity.second.SecondActivity
 import com.anangkur.synrgychapter3.ui.activity.login.LoginActivity
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonMvvm.setOnClickListener { openMvvm() }
         activityMainBinding.buttonLogout.setOnClickListener { logout() }
         activityMainBinding.buttonWebview.setOnClickListener { openWebView() }
+        activityMainBinding.buttonLocation.setOnClickListener { openLocation() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -177,5 +179,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openWebView() {
         startActivity(Intent(this, WebViewActivity::class.java))
+    }
+
+    private fun openLocation() {
+        startActivity(Intent(this, LocationActivity::class.java))
     }
 }

@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.ui.activity
+package com.anangkur.synrgychapter3.ui.activity.webview
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
