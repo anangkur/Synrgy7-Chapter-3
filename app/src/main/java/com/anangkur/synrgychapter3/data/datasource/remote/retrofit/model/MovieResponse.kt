@@ -1,19 +1,30 @@
 package com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model
 
+import com.google.gson.annotations.SerializedName
+
 data class MovieResponse(
     val adult: Boolean,
-    val backdrop_path: String,
-    val genre_ids: List<Int>,
+    @SerializedName("backdrop_path")
+    val backdropPath: String,
+    @SerializedName("genre_ids")
+    val genreIds: List<Int>,
     val id: Int,
-    val media_type: String,
-    val original_language: String,
-    val original_title: String,
+    @SerializedName("media_type")
+    val mediaType: String,
+    @SerializedName("original_language")
+    val originalLanguage: String,
+    @SerializedName("original_title")
+    val originalTitle: String,
     val overview: String,
     val popularity: Double,
-    val poster_path: String,
-    val release_date: String,
+    @SerializedName("poster_path")
+    val posterPath: String,
+    @SerializedName("release_date")
+    val releaseDate: String,
     val title: String,
     val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    @SerializedName("vote_average")
+    val voteAverage: Double,
+    @SerializedName("vote_count")
+    val voteCount: Int
 )
