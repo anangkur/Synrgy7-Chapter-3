@@ -6,14 +6,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import androidx.savedstate.SavedStateRegistryOwner
 import com.anangkur.synrgychapter3.data.datasource.local.MovieLocalDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.local.room.RoomDatabase
 import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideTMDBService
 import com.anangkur.synrgychapter3.data.repository.MovieRepositoryImpl
 import com.anangkur.synrgychapter3.domain.MovieRepository
 import com.anangkur.synrgychapter3.ui.dataclass.Movie
+import kotlinx.coroutines.launch
 
 class SecondNavigationViewModel(
     private val repository: MovieRepository,
@@ -37,7 +40,9 @@ class SecondNavigationViewModel(
                         klass = RoomDatabase::class.java,
                     ).build()
                     val movieRepository: MovieRepository = MovieRepositoryImpl(
-                        remoteDataSource = MovieRemoteDataSourceImpl(),
+                        remoteDataSource = MovieRemoteDataSourceImpl(
+                            tmdbService = provideTMDBService(),
+                        ),
                         localDataSource = MovieLocalDataSourceImpl(
                             movieDao = roomDatabase.movieDao(),
                         ),
@@ -64,10 +69,20 @@ class SecondNavigationViewModel(
     private val _loading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean> = _loading
 
+    private val _error: MutableLiveData<String> = MutableLiveData()
+    val error: LiveData<String> = _error
+
     fun retrieveMovieData() {
         // Create and return a list of sample movie data
-        _loading.value = true
-        _movies.value = repository.fetchData()
-        _loading.value = false
+        viewModelScope.launch {
+            try {
+                _loading.value = true
+                _movies.value = repository.fetchData()
+                _loading.value = false
+            } catch (throwable: Throwable) {
+                _loading.value = false
+                _error.value = throwable.message
+            }
+        }
     }
 }

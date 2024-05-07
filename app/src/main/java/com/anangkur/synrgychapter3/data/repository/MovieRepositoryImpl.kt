@@ -12,7 +12,7 @@ class MovieRepositoryImpl(
     private val remoteDataSource: MovieRemoteDataSource,
     private val localDataSource: MovieLocalDataSource,
 ) : MovieRepository {
-    override fun fetchData(): List<Movie> {
+    override suspend fun fetchData(): List<Movie> {
         return remoteDataSource.fetchData()
     }
 

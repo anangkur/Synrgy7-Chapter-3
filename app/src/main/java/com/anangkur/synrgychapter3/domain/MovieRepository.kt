@@ -3,7 +3,7 @@ package com.anangkur.synrgychapter3.domain
 import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 interface MovieRepository {
-    fun fetchData(): List<Movie>
+    suspend fun fetchData(): List<Movie>
 
     fun storeData(data: Movie)
 

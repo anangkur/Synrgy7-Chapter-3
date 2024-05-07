@@ -12,6 +12,7 @@ import androidx.savedstate.SavedStateRegistryOwner
 import com.anangkur.synrgychapter3.data.datasource.local.MovieLocalDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.local.room.RoomDatabase
 import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideTMDBService
 import com.anangkur.synrgychapter3.data.repository.MovieRepositoryImpl
 import com.anangkur.synrgychapter3.domain.MovieRepository
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.SecondNavigationViewModel
@@ -40,7 +41,9 @@ class FavoriteViewModel(
                         klass = RoomDatabase::class.java,
                     ).build()
                     val movieRepository: MovieRepository = MovieRepositoryImpl(
-                        remoteDataSource = MovieRemoteDataSourceImpl(),
+                        remoteDataSource = MovieRemoteDataSourceImpl(
+                            tmdbService = provideTMDBService(),
+                        ),
                         localDataSource = MovieLocalDataSourceImpl(
                             movieDao = roomDatabase.movieDao(),
                         ),
