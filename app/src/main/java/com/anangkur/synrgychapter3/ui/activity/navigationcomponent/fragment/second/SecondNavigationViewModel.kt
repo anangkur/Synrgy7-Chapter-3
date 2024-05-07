@@ -41,7 +41,7 @@ class SecondNavigationViewModel(
                     ).build()
                     val movieRepository: MovieRepository = MovieRepositoryImpl(
                         remoteDataSource = MovieRemoteDataSourceImpl(
-                            tmdbService = provideTMDBService(),
+                            tmdbService = provideTMDBService(context),
                         ),
                         localDataSource = MovieLocalDataSourceImpl(
                             movieDao = roomDatabase.movieDao(),

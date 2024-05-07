@@ -75,4 +75,7 @@ dependencies {
 
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
+
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 }
