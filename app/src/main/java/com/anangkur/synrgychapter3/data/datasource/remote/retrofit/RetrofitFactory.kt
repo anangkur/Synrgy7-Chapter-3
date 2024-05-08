@@ -12,9 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 const val TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjliZmIwZTgzZGUyYTRhZmIxN2MxNTdjY2IyNTRmMyIsInN1YiI6IjViZWFmNjExMGUwYTI2M2JmMzA1N2I4YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MrSIS0bBQ6yG-KQIeDGTxgnFHd2n9pcKRw38Z-rlpao"
 
-private fun provideRetrofit(context: Context): Retrofit {
+private fun provideRetrofit(context: Context, baseUrl: String): Retrofit {
     return Retrofit.Builder()
-        .baseUrl("https://api.themoviedb.org/3/")
+        .baseUrl(baseUrl)
         .client(provideOkhttpClient(context))
         .addConverterFactory(GsonConverterFactory.create(Gson()))
         .build()
@@ -38,5 +38,15 @@ private fun provideChuckerInterceptor(context: Context): Interceptor {
 }
 
 fun provideTMDBService(context: Context): TMDBService {
-    return provideRetrofit(context).create(TMDBService::class.java)
+    return provideRetrofit(
+        context,
+        "https://api.themoviedb.org/3/",
+    ).create(TMDBService::class.java)
+}
+
+fun provideReqresService(context: Context): ReqresService {
+    return provideRetrofit(
+        context,
+        "https://reqres.in/api/"
+    ).create(ReqresService::class.java)
 }

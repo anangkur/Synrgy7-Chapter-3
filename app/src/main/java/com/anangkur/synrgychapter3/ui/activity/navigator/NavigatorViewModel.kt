@@ -9,6 +9,7 @@ import com.anangkur.synrgychapter3.data.repository.AuthRepositoryImpl
 import com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.local.SharedPreferencesFactory
 import com.anangkur.synrgychapter3.data.datasource.remote.AuthRemoteDataSourceImpl
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideReqresService
 import com.anangkur.synrgychapter3.domain.AuthRepository
 
 class NavigatorViewModel(private val authRepository: AuthRepository) : ViewModel() {
@@ -29,7 +30,9 @@ class NavigatorViewModel(private val authRepository: AuthRepository) : ViewModel
                         authLocalDataSource = AuthLocalDataSourceImpl(
                             sharedPreferences = SharedPreferencesFactory().createSharedPreferences(context),
                         ),
-                        authRemoteDataSource = AuthRemoteDataSourceImpl(),
+                        authRemoteDataSource = AuthRemoteDataSourceImpl(
+                            reqresService = provideReqresService(context),
+                        ),
                     )
                     return NavigatorViewModel(authRepository = authRepository) as T
                 }

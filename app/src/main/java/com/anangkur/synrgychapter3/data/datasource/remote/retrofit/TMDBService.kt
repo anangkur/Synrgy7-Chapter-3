@@ -1,6 +1,6 @@
 package com.anangkur.synrgychapter3.data.datasource.remote.retrofit
 
-import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.TMDBResponse
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.response.TMDBResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path

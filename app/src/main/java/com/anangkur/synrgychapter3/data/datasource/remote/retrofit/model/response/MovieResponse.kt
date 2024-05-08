@@ -1,4 +1,4 @@
-package com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model
+package com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.response
 
 import com.google.gson.annotations.SerializedName
 

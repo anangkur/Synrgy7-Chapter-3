@@ -50,8 +50,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.error.observe(this) { throwable ->
-            Toast.makeText(this, throwable.message, Toast.LENGTH_SHORT).show()
+        viewModel.error.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
     }
 }

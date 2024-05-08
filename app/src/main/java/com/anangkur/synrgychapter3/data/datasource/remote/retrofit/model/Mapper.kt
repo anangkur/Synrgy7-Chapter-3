@@ -1,5 +1,6 @@
 package com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model
 
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.response.MovieResponse
 import com.anangkur.synrgychapter3.ui.dataclass.Movie
 
 fun MovieResponse.toMovie(): Movie {

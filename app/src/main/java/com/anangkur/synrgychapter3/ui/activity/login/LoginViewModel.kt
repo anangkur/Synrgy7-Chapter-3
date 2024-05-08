@@ -12,8 +12,12 @@ import com.anangkur.synrgychapter3.data.repository.AuthRepositoryImpl
 import com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.local.SharedPreferencesFactory
 import com.anangkur.synrgychapter3.data.datasource.remote.AuthRemoteDataSourceImpl
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.response.ReqresErrorResponse
+import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideReqresService
 import com.anangkur.synrgychapter3.domain.AuthRepository
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class LoginViewModel(
     private val authRepository: AuthRepository,
@@ -35,7 +39,9 @@ class LoginViewModel(
                         authLocalDataSource = AuthLocalDataSourceImpl(
                             sharedPreferences = SharedPreferencesFactory().createSharedPreferences(context),
                         ),
-                        authRemoteDataSource = AuthRemoteDataSourceImpl(),
+                        authRemoteDataSource = AuthRemoteDataSourceImpl(
+                            reqresService = provideReqresService(context),
+                        ),
                     )
                     return LoginViewModel(authRepository = authRepository) as T
                 }
@@ -48,8 +54,8 @@ class LoginViewModel(
     private val _success = MutableLiveData<Boolean>()
     val success: LiveData<Boolean> = _success
 
-    private val _error = MutableLiveData<Throwable>()
-    val error: LiveData<Throwable> = _error
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
@@ -61,7 +67,13 @@ class LoginViewModel(
                 _success.value = true
             } catch (throwable: Throwable) {
                 _loading.value = false
-                _error.value = throwable
+                if (throwable is HttpException) {
+                    val json = throwable.response()?.errorBody()?.string()
+                    val error = Gson().fromJson(json, ReqresErrorResponse::class.java)
+                    _error.value = error.error
+                } else {
+                    _error.value = throwable.message
+                }
             }
         }
     }
