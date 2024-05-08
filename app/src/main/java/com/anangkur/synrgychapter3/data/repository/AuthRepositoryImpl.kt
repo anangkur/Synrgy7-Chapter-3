@@ -12,6 +12,10 @@ class AuthRepositoryImpl(
         return authRemoteDataSource.login(username, password)
     }
 
+    override suspend fun register(username: String, email: String, password: String): String {
+        return authRemoteDataSource.register(email, username, password)
+    }
+
     override fun saveToken(token: String) {
         authLocalDataSource.saveToken(token)
     }

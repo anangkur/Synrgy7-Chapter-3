@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.databinding.ActivityLoginBinding
 import com.anangkur.synrgychapter3.ui.activity.main.MainActivity
+import com.anangkur.synrgychapter3.ui.activity.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
                     password = binding.tiePassword.text.toString(),
                 )
             }
+        }
+
+        binding.buttonRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         viewModel.loading.observe(this) { isLoading ->

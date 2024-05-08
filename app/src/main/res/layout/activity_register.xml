@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="Username">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="Email">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        android:padding="16dp"
+        android:hint="Password">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_margin="16dp"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@android:style/Widget.ProgressBar.Small"/>
+    </ViewFlipper>
+
+</LinearLayout>
