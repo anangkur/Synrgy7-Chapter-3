@@ -16,10 +16,14 @@ class NavigatorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (viewModel.checkLogin()) {
-            startActivity(Intent(this, MainActivity::class.java))
-        } else {
-            startActivity(Intent(this, LoginActivity::class.java))
+        viewModel.isLoggedIn.observe(this) { isLoggedIn ->
+            if (isLoggedIn) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
         }
+
+        viewModel.checkLogin()
     }
 }

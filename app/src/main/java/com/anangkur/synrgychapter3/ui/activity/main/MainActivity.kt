@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -55,6 +56,10 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "lifecycle state: onCreate")
 
         setupToolbar()
+
+        viewModel.error.observe(this) { error ->
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onStart() {
