@@ -52,3 +52,4 @@ safeargs = { id = "androidx.navigation.safeargs", version.ref = "navigationCompo
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 protobuf = { id = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }

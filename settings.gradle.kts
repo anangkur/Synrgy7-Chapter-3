@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Synrgy Chapter 3"
 include(":app")
 include(":domain")
+include(":data")
