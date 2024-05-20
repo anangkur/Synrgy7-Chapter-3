@@ -26,18 +26,18 @@ import java.io.OutputStream
 /**
  * Serializer for the [UserPreferences] object defined in user_prefs.proto.
  */
-object UserPreferencesSerializer : Serializer<AuthPreferences> {
-    override val defaultValue: AuthPreferences = AuthPreferences.getDefaultInstance()
-
-    @Suppress("BlockingMethodInNonBlockingContext")
-    override suspend fun readFrom(input: InputStream): AuthPreferences {
-        try {
-            return AuthPreferences.parseFrom(input)
-        } catch (exception: InvalidProtocolBufferException) {
-            throw CorruptionException("Cannot read proto.", exception)
-        }
-    }
-
-    @Suppress("BlockingMethodInNonBlockingContext")
-    override suspend fun writeTo(t: AuthPreferences, output: OutputStream) = t.writeTo(output)
-}
+//object UserPreferencesSerializer : Serializer<AuthPreferences> {
+//    override val defaultValue: AuthPreferences = AuthPreferences.getDefaultInstance()
+//
+//    @Suppress("BlockingMethodInNonBlockingContext")
+//    override suspend fun readFrom(input: InputStream): AuthPreferences {
+//        try {
+//            return AuthPreferences.parseFrom(input)
+//        } catch (exception: InvalidProtocolBufferException) {
+//            throw CorruptionException("Cannot read proto.", exception)
+//        }
+//    }
+//
+//    @Suppress("BlockingMethodInNonBlockingContext")
+//    override suspend fun writeTo(t: AuthPreferences, output: OutputStream) = t.writeTo(output)
+//}
