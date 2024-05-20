@@ -15,12 +15,13 @@ import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.respons
 import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideReqresService
 import com.anangkur.synrgychapter3.data.repository.AuthRepositoryImpl
 import com.anangkur.synrgychapter3.domain.AuthRepository
+import com.anangkur.synrgychapter3.domain.usecases.LoginUseCase
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class LoginViewModel(
-    private val authRepository: AuthRepository,
+    private val loginUseCase: LoginUseCase,
 ) : ViewModel() {
 
     companion object {
@@ -43,7 +44,7 @@ class LoginViewModel(
                             reqresService = provideReqresService(context),
                         ),
                     )
-                    return LoginViewModel(authRepository = authRepository) as T
+                    return LoginViewModel(loginUseCase = LoginUseCase(authRepository)) as T
                 }
             }
     }
@@ -61,8 +62,7 @@ class LoginViewModel(
         viewModelScope.launch {
             try {
                 _loading.value = true
-                val token = authRepository.login(username, password)
-                authRepository.saveToken(token)
+                loginUseCase.login(username, password)
                 _loading.value = false
                 _success.value = true
             } catch (throwable: Throwable) {
