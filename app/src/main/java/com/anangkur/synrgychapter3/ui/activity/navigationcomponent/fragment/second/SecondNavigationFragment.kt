@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
-import com.anangkur.synrgychapter3.ui.dataclass.Movie
+import com.anangkur.synrgychapter3.domain.model.Movie
 
 class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 

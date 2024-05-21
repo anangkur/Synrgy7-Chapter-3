@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.anangkur.synrgychapter3.data.datasource.AuthLocalDataSource
-import com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl
 import com.anangkur.synrgychapter3.databinding.ActivityLoginBinding
 import com.anangkur.synrgychapter3.ui.activity.main.MainActivity
 import com.anangkur.synrgychapter3.ui.activity.register.RegisterActivity

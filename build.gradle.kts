@@ -6,4 +6,13 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
     alias(libs.plugins.androidLibrary) apply false
+    id("land.sungbin.dependency.graph.plugin") version "1.1.0"
+}
+
+dependencyGraphConfig {
+    projectName = null
+    outputFormat = OutputFormat.PNG
+    dependencyBuilder { project ->
+        null
+    }
 }

@@ -14,7 +14,7 @@ import com.anangkur.synrgychapter3.data.datasource.remote.AuthRemoteDataSourceIm
 import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.response.ReqresErrorResponse
 import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideReqresService
 import com.anangkur.synrgychapter3.data.repository.AuthRepositoryImpl
-import com.anangkur.synrgychapter3.domain.AuthRepository
+import com.anangkur.synrgychapter3.domain.repository.AuthRepository
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -36,7 +36,7 @@ class RegisterViewModel(
                     handle: SavedStateHandle,
                 ): T {
                     val authRepository: AuthRepository = AuthRepositoryImpl(
-                        authLocalDataSource = AuthLocalDataSourceImpl(
+                        authLocalDataSource = com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl(
                             dataStore = context.datastore,
                         ),
                         authRemoteDataSource = AuthRemoteDataSourceImpl(

@@ -13,7 +13,7 @@ import com.anangkur.synrgychapter3.data.datasource.local.datastore
 import com.anangkur.synrgychapter3.data.datasource.remote.AuthRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideReqresService
 import com.anangkur.synrgychapter3.data.repository.AuthRepositoryImpl
-import com.anangkur.synrgychapter3.domain.AuthRepository
+import com.anangkur.synrgychapter3.domain.repository.AuthRepository
 import kotlinx.coroutines.launch
 
 class NavigatorViewModel(private val authRepository: AuthRepository) : ViewModel() {
@@ -31,7 +31,7 @@ class NavigatorViewModel(private val authRepository: AuthRepository) : ViewModel
                     handle: SavedStateHandle,
                 ): T {
                     val authRepository: AuthRepository = AuthRepositoryImpl(
-                        authLocalDataSource = AuthLocalDataSourceImpl(
+                        authLocalDataSource = com.anangkur.synrgychapter3.data.datasource.local.AuthLocalDataSourceImpl(
                             dataStore = context.datastore,
                         ),
                         authRemoteDataSource = AuthRemoteDataSourceImpl(

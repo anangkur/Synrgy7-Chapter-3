@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.anangkur.synrgychapter3.databinding.ItemMovieBinding
-import com.anangkur.synrgychapter3.ui.dataclass.Movie
+import com.anangkur.synrgychapter3.domain.model.Movie
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.viewholder.MovieViewHolder
 
 class MovieAdapter(

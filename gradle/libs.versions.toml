@@ -19,6 +19,7 @@ gson = "2.10.1"
 okhttp = "4.12.0"
 protobuf = "0.9.4"
 jetbrainsKotlinJvm = "1.9.23"
+moduleDependencyGraph = "0.1.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,3 +54,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 protobuf = { id = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+moduleDependencyGraph = { id = "io.github.adityabhaskar.dependencygraph", version.ref = "moduleDependencyGraph" }

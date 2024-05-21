@@ -14,8 +14,8 @@ import com.anangkur.synrgychapter3.data.datasource.local.room.RoomDatabase
 import com.anangkur.synrgychapter3.data.datasource.remote.MovieRemoteDataSourceImpl
 import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.provideTMDBService
 import com.anangkur.synrgychapter3.data.repository.MovieRepositoryImpl
-import com.anangkur.synrgychapter3.domain.MovieRepository
-import com.anangkur.synrgychapter3.ui.dataclass.Movie
+import com.anangkur.synrgychapter3.domain.repository.MovieRepository
+import com.anangkur.synrgychapter3.domain.model.Movie
 import kotlinx.coroutines.launch
 
 class SecondNavigationViewModel(
