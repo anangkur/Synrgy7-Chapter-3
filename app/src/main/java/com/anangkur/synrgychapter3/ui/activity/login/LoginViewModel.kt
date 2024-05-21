@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.anangkur.synrgychapter3.data.datasource.remote.retrofit.model.response.ReqresErrorResponse
+import com.anangkur.synrgychapter3.domain.model.ReqresErrorResponse
 import com.anangkur.synrgychapter3.domain.usecase.LoginUseCase
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
