@@ -10,14 +10,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.load
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.FragmentThirdNavigationBinding
+import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 
 class ThirdNavigationFragment : Fragment() {
 
     private lateinit var binding: FragmentThirdNavigationBinding
 
     private val logic by viewModels<ThirdNavigationLogic> {
-        ThirdNavigationLogic.provideFactory(this, requireActivity().applicationContext)
+        (activity?.application as MyApplication).viewModelFactory
     }
 
     override fun onCreateView(

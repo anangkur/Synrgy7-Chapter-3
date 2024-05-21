@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
@@ -22,14 +23,9 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
     private lateinit var binding: FragmentSecondNavigationBinding
     private val movieAdapter = MovieAdapter(this)
 
-    private val secondNavigationViewModel by viewModels<SecondNavigationViewModel>(
-        factoryProducer = {
-            SecondNavigationViewModel.provideFactory(
-                owner = this,
-                context = requireActivity().applicationContext,
-            )
-        },
-    )
+    private val secondNavigationViewModel by viewModels<SecondNavigationViewModel>() {
+        (activity?.application as MyApplication).viewModelFactory
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

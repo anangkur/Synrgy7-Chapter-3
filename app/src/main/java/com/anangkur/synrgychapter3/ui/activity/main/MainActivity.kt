@@ -9,7 +9,9 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
+import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 import com.anangkur.synrgychapter3.ui.activity.location.LocationActivity
 import com.anangkur.synrgychapter3.ui.activity.webview.WebViewActivity
 import com.anangkur.synrgychapter3.ui.activity.main2.MainActivity2
@@ -35,8 +37,8 @@ class MainActivity : AppCompatActivity() {
         ::handleSecondActivityResultCallback,
     )
 
-    private val viewModel by viewModels<MainViewModel>() {
-        MainViewModel.provideFactory(this, this)
+    private val viewModel by viewModels<MainViewModel> {
+        (application as MyApplication).viewModelFactory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

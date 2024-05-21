@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
+import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
 import com.anangkur.synrgychapter3.domain.model.Movie
@@ -18,7 +20,7 @@ import com.anangkur.synrgychapter3.domain.model.Movie
 class FavoriteFragment : Fragment(), MovieAdapterListener {
 
     private val viewModel: FavoriteViewModel by viewModels {
-        FavoriteViewModel.provideFactory(this, requireActivity().applicationContext)
+        (activity?.application as MyApplication).viewModelFactory
     }
 
     private val movieAdapter: MovieAdapter by lazy {

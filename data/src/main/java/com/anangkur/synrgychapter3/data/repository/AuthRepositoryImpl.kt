@@ -5,8 +5,8 @@ import com.anangkur.synrgychapter3.data.datasource.AuthRemoteDataSource
 import com.anangkur.synrgychapter3.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(
-    private val authLocalDataSource: com.anangkur.synrgychapter3.data.datasource.AuthLocalDataSource,
-    private val authRemoteDataSource: com.anangkur.synrgychapter3.data.datasource.AuthRemoteDataSource,
+    private val authLocalDataSource: AuthLocalDataSource,
+    private val authRemoteDataSource: AuthRemoteDataSource,
 ) : AuthRepository {
     override suspend fun login(username: String, password: String): String {
         return authRemoteDataSource.login(username, password)

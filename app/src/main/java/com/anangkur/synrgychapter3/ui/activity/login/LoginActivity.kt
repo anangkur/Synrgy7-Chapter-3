@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityLoginBinding
+import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 import com.anangkur.synrgychapter3.ui.activity.main.MainActivity
 import com.anangkur.synrgychapter3.ui.activity.register.RegisterActivity
 
@@ -13,7 +15,7 @@ class LoginActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<LoginViewModel> {
-        LoginViewModel.provideFactory(this, this)
+        (application as MyApplication).viewModelFactory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

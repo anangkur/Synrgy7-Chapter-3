@@ -2,7 +2,6 @@ package com.anangkur.synrgychapter3.ui.activity.location
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -12,12 +11,15 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityLocationBinding
 
 class LocationActivity : AppCompatActivity(), LocationListener {
 
     private val binding by lazy { ActivityLocationBinding.inflate(layoutInflater) }
-    private val locationManager: LocationManager by lazy { getSystemService(Context.LOCATION_SERVICE) as LocationManager }
+    private val locationManager: LocationManager by lazy {
+        (application as MyApplication).module.locationManager
+    }
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions(),
         ::handleLocationPermissionResult,

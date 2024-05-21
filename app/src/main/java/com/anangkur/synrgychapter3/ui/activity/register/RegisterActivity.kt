@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<RegisterViewModel> {
-        RegisterViewModel.provideFactory(this, this)
+        (application as MyApplication).viewModelFactory
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
