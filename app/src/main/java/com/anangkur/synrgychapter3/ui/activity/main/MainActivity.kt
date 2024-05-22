@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
 import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
+import com.anangkur.synrgychapter3.ui.activity.imagehandler.ImageHandlerActivity
 import com.anangkur.synrgychapter3.ui.activity.location.LocationActivity
 import com.anangkur.synrgychapter3.ui.activity.webview.WebViewActivity
 import com.anangkur.synrgychapter3.ui.activity.main2.MainActivity2
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonLogout.setOnClickListener { logout() }
         activityMainBinding.buttonWebview.setOnClickListener { openWebView() }
         activityMainBinding.buttonLocation.setOnClickListener { openLocation() }
+        activityMainBinding.buttonImageHandler.setOnClickListener { openImageHandler() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -189,5 +191,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openLocation() {
         startActivity(Intent(this, LocationActivity::class.java))
+    }
+
+    private fun openImageHandler() {
+        startActivity(Intent(this, ImageHandlerActivity::class.java))
     }
 }
