@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityMvvmBinding
+import org.koin.android.ext.android.inject
 
 class MvvmActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMvvmBinding.inflate(layoutInflater) }
-    private val viewModel = MvvmViewModel((application as MyApplication).appModule.mvvmModel)
+    private val viewModel: MvvmViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

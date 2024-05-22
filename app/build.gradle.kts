@@ -89,6 +89,9 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     implementation("com.google.protobuf:protobuf-javalite:3.8.0")
+
+    implementation(platform("io.insert-koin:koin-bom:3.5.6"))
+    implementation("io.insert-koin:koin-android")
 }
 
 protobuf {

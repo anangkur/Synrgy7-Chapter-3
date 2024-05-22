@@ -13,14 +13,13 @@ import coil.load
 import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.FragmentThirdNavigationBinding
 import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ThirdNavigationFragment : Fragment() {
 
     private lateinit var binding: FragmentThirdNavigationBinding
 
-    private val logic by viewModels<ThirdNavigationLogic> {
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val logic by viewModel<ThirdNavigationLogic>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -10,13 +10,12 @@ import com.anangkur.synrgychapter3.databinding.ActivityLoginBinding
 import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 import com.anangkur.synrgychapter3.ui.activity.main.MainActivity
 import com.anangkur.synrgychapter3.ui.activity.register.RegisterActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
-    private val viewModel by viewModels<LoginViewModel> {
-        (application as MyApplication).viewModelFactory
-    }
+    private val viewModel by viewModel<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

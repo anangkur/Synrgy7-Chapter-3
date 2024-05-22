@@ -13,13 +13,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityLocationBinding
+import org.koin.android.ext.android.inject
 
 class LocationActivity : AppCompatActivity(), LocationListener {
 
     private val binding by lazy { ActivityLocationBinding.inflate(layoutInflater) }
-    private val locationManager: LocationManager by lazy {
-        (application as MyApplication).module.locationManager
-    }
+    private val locationManager: LocationManager by inject()
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions(),
         ::handleLocationPermissionResult,

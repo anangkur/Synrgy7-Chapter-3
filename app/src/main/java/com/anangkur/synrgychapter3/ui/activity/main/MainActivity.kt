@@ -23,6 +23,7 @@ import com.anangkur.synrgychapter3.ui.activity.navigationcomponent2.NavigationCo
 import com.anangkur.synrgychapter3.ui.activity.third.ThirdActivity
 import com.anangkur.synrgychapter3.ui.dataclass.DataParcelable
 import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,9 +38,7 @@ class MainActivity : AppCompatActivity() {
         ::handleSecondActivityResultCallback,
     )
 
-    private val viewModel by viewModels<MainViewModel> {
-        (application as MyApplication).viewModelFactory
-    }
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

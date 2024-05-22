@@ -17,15 +17,14 @@ import com.anangkur.synrgychapter3.databinding.FragmentSecondNavigationBinding
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
 import com.anangkur.synrgychapter3.domain.model.Movie
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SecondNavigationFragment : Fragment(), MovieAdapterListener {
 
     private lateinit var binding: FragmentSecondNavigationBinding
     private val movieAdapter = MovieAdapter(this)
 
-    private val secondNavigationViewModel by viewModels<SecondNavigationViewModel>() {
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val secondNavigationViewModel by viewModel<SecondNavigationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -39,6 +39,9 @@ dependencies {
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
+    implementation(platform("io.insert-koin:koin-bom:3.5.6"))
+    implementation("io.insert-koin:koin-android")
+
     implementation(libs.room)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)

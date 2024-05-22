@@ -16,12 +16,11 @@ import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapter
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.adapter.MovieAdapterListener
 import com.anangkur.synrgychapter3.domain.model.Movie
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment(), MovieAdapterListener {
 
-    private val viewModel: FavoriteViewModel by viewModels {
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val viewModel: FavoriteViewModel by viewModel()
 
     private val movieAdapter: MovieAdapter by lazy {
         MovieAdapter(this)
