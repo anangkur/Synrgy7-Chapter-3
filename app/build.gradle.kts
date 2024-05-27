@@ -92,6 +92,10 @@ dependencies {
 
     implementation(platform("io.insert-koin:koin-bom:3.5.6"))
     implementation("io.insert-koin:koin-android")
+
+    implementation("io.github.afreakyelf:Pdf-Viewer:2.1.1")
+
+    implementation(libs.filepicker)
 }
 
 protobuf {

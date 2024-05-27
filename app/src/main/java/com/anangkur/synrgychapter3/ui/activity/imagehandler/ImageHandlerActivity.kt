@@ -1,11 +1,9 @@
 package com.anangkur.synrgychapter3.ui.activity.imagehandler
 
-import android.Manifest
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.Uri
 import android.os.Bundle
@@ -19,6 +17,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import coil.load
 import com.anangkur.synrgychapter3.databinding.ActivityImageHandlerBinding
+import com.nareshchocha.filepickerlibrary.models.PickMediaConfig
+import com.nareshchocha.filepickerlibrary.models.PickMediaType
+import com.nareshchocha.filepickerlibrary.ui.FilePicker
 import java.io.File
 
 class ImageHandlerActivity : AppCompatActivity() {
@@ -42,17 +43,19 @@ class ImageHandlerActivity : AppCompatActivity() {
         ::handleCameraResult,
     )
 
+    private val filePickerResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(),
+            ::handleFilePickerResult,
+        )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
 
         binding.btnChoose.setOnClickListener {
-            if (isWriteExternalStorageGranted() && isReadExternalStorageGranted() && isCameraGranted()) {
-                chooseImageDialog()
-            } else {
-                askPermission()
-            }
+            chooseImageDialog()
         }
     }
 
@@ -100,14 +103,33 @@ class ImageHandlerActivity : AppCompatActivity() {
     private fun chooseImageDialog() {
         AlertDialog.Builder(this)
             .setMessage("Pilih Gambar")
-            .setPositiveButton("Gallery") { _, _ -> openGallery() }
-            .setNegativeButton("Camera") { _, _ -> openCamera() }
+            .setPositiveButton("Gallery") { _, _ -> openFilePicker() }
+            .setNegativeButton("Camera") { _, _ -> openCameraFromLibrary() }
             .show()
     }
 
     private fun openGallery() {
         intent.type = "image/*"
         galleryResult.launch("image/*")
+    }
+
+    private fun openFilePicker() {
+        filePickerResult.launch(
+            FilePicker.Builder(this)
+                .pickMediaBuild(
+                    PickMediaConfig(
+                        mPickMediaType = PickMediaType.ImageOnly,
+                        allowMultiple = false,
+                    ),
+                ),
+        )
+    }
+
+    private fun openCameraFromLibrary() {
+        filePickerResult.launch(
+            FilePicker.Builder(this)
+                .imageCaptureBuild(),
+        )
     }
 
     private fun openCamera() {
@@ -124,5 +146,11 @@ class ImageHandlerActivity : AppCompatActivity() {
         )
 
         cameraResult.launch(uri)
+    }
+
+    private fun handleFilePickerResult(result: ActivityResult) {
+        if (result.resultCode == Activity.RESULT_OK) {
+            binding.ivImage.load(result.data?.data)
+        }
     }
 }

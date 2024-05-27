@@ -21,6 +21,7 @@ import com.anangkur.synrgychapter3.ui.activity.login.LoginActivity
 import com.anangkur.synrgychapter3.ui.activity.mvvm.MvvmActivity
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.NavigationComponentActivity
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent2.NavigationComponent2Activity
+import com.anangkur.synrgychapter3.ui.activity.pdfhandler.PDFHandlerActivity
 import com.anangkur.synrgychapter3.ui.activity.third.ThirdActivity
 import com.anangkur.synrgychapter3.ui.dataclass.DataParcelable
 import com.google.android.material.snackbar.Snackbar
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonWebview.setOnClickListener { openWebView() }
         activityMainBinding.buttonLocation.setOnClickListener { openLocation() }
         activityMainBinding.buttonImageHandler.setOnClickListener { openImageHandler() }
+        activityMainBinding.buttonPdfHandler.setOnClickListener { openPdfHandler() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -195,5 +197,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openImageHandler() {
         startActivity(Intent(this, ImageHandlerActivity::class.java))
+    }
+
+    private fun openPdfHandler() {
+        startActivity(Intent(this, PDFHandlerActivity::class.java))
     }
 }

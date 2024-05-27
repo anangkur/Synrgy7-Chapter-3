@@ -20,6 +20,7 @@ okhttp = "4.12.0"
 protobuf = "0.9.4"
 jetbrainsKotlinJvm = "1.9.23"
 moduleDependencyGraph = "0.1.6"
+filepicker = "0.2.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+filepicker = { group = "io.github.chochanaresh", name = "filepicker", version.ref = "filepicker" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
