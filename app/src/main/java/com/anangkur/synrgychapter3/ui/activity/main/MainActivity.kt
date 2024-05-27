@@ -23,6 +23,7 @@ import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.NavigationCom
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent2.NavigationComponent2Activity
 import com.anangkur.synrgychapter3.ui.activity.pdfhandler.PDFHandlerActivity
 import com.anangkur.synrgychapter3.ui.activity.third.ThirdActivity
+import com.anangkur.synrgychapter3.ui.activity.videohandler.VideoHandlerActivity
 import com.anangkur.synrgychapter3.ui.dataclass.DataParcelable
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonLocation.setOnClickListener { openLocation() }
         activityMainBinding.buttonImageHandler.setOnClickListener { openImageHandler() }
         activityMainBinding.buttonPdfHandler.setOnClickListener { openPdfHandler() }
+        activityMainBinding.buttonVideoHandler.setOnClickListener { openVideoHandler() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -201,5 +203,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openPdfHandler() {
         startActivity(Intent(this, PDFHandlerActivity::class.java))
+    }
+
+    private fun openVideoHandler() {
+        startActivity(Intent(this, VideoHandlerActivity::class.java))
     }
 }

@@ -96,6 +96,10 @@ dependencies {
     implementation("io.github.afreakyelf:Pdf-Viewer:2.1.1")
 
     implementation(libs.filepicker)
+
+    implementation("com.google.android.exoplayer:exoplayer-core:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1")
 }
 
 protobuf {

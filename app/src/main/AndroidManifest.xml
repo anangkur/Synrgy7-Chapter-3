@@ -25,6 +25,7 @@
         android:theme="@style/Theme.SynrgyChapter3"
         android:requestLegacyExternalStorage="true"
         android:name=".MyApplication">
+        <activity android:name=".ui.activity.videohandler.VideoHandlerActivity"/>
         <activity android:name=".ui.activity.pdfhandler.PDFHandlerActivity"/>
         <activity android:name=".ui.activity.imagehandler.ImageHandlerActivity"/>
         <activity android:name=".ui.activity.register.RegisterActivity"/>
