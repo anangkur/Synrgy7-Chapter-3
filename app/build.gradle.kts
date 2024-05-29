@@ -100,6 +100,8 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer-core:2.19.1")
     implementation("com.google.android.exoplayer:exoplayer-ui:2.19.1")
     implementation("com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1")
+
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
 }
 
 protobuf {

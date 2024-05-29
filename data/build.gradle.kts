@@ -38,6 +38,7 @@ dependencies {
 
     implementation(libs.room)
     implementation(libs.room.ktx)
+    implementation(libs.androidx.core)
     ksp(libs.room.compiler)
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")

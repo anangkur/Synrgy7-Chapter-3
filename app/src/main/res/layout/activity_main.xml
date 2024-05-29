@@ -136,4 +136,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_blur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go To Blur"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/button_video_handler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.anangkur.synrgychapter3.MyApplication
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
 import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
+import com.anangkur.synrgychapter3.ui.activity.blur.BlurActivity
 import com.anangkur.synrgychapter3.ui.activity.imagehandler.ImageHandlerActivity
 import com.anangkur.synrgychapter3.ui.activity.location.LocationActivity
 import com.anangkur.synrgychapter3.ui.activity.webview.WebViewActivity
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonImageHandler.setOnClickListener { openImageHandler() }
         activityMainBinding.buttonPdfHandler.setOnClickListener { openPdfHandler() }
         activityMainBinding.buttonVideoHandler.setOnClickListener { openVideoHandler() }
+        activityMainBinding.buttonBlur.setOnClickListener { openBlur() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -207,5 +209,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openVideoHandler() {
         startActivity(Intent(this, VideoHandlerActivity::class.java))
+    }
+
+    private fun openBlur() {
+        startActivity(Intent(this, BlurActivity::class.java))
     }
 }

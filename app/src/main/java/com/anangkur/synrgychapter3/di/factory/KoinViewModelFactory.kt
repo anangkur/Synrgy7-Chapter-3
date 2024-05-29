@@ -1,5 +1,6 @@
 package com.anangkur.synrgychapter3.di.factory
 
+import com.anangkur.synrgychapter3.ui.activity.blur.BlurViewModel
 import com.anangkur.synrgychapter3.ui.activity.login.LoginViewModel
 import com.anangkur.synrgychapter3.ui.activity.main.MainViewModel
 import com.anangkur.synrgychapter3.ui.activity.mvvm.MvvmModel
@@ -20,6 +21,7 @@ val viewModelModule = module {
     viewModel { FavoriteViewModel(movieRepository = get()) }
     viewModel { NavigatorViewModel(authRepository = get()) }
     viewModel { RegisterViewModel(authRepository = get()) }
+    viewModel { BlurViewModel(get()) }
     single<MvvmModel> { MvvmModel() }
     single<MvvmViewModel> { MvvmViewModel(get()) }
 }
