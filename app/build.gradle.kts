@@ -1,13 +1,9 @@
-import com.google.protobuf.gradle.id
-
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs")
     id("com.google.devtools.ksp")
-    id("com.google.protobuf") version "0.9.4"
 }
 
 android {
@@ -88,8 +84,6 @@ dependencies {
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    implementation("com.google.protobuf:protobuf-javalite:3.8.0")
-
     implementation(platform("io.insert-koin:koin-bom:3.5.6"))
     implementation("io.insert-koin:koin-android")
 
@@ -102,19 +96,4 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1")
 
     implementation("androidx.work:work-runtime-ktx:2.7.1")
-}
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.8.0:osx-x86_64"
-    }
-    generateProtoTasks {
-        all().configureEach {
-            builtins {
-                id("java") {
-                    option("lite")
-                }
-            }
-        }
-    }
 }
