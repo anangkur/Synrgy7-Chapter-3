@@ -1,12 +1,19 @@
 package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second
 
-import com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second.data.Movie
+import com.anangkur.synrgychapter3.domain.model.Movie
+import com.anangkur.synrgychapter3.domain.repository.MovieRepository
+import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.SecondNavigationViewModel
 import org.junit.Assert
 import org.junit.Test
+import org.mockito.kotlin.mock
 
 class SecondNavigationViewModelTest {
 
-    private val secondNavigationViewModel = SecondNavigationViewModel()
+    private val movieRepository = mock<MovieRepository>()
+
+    private val secondNavigationViewModel = SecondNavigationViewModel(
+        repository = movieRepository,
+    )
 
     @Test
     fun retrieveMovieDataTest() {

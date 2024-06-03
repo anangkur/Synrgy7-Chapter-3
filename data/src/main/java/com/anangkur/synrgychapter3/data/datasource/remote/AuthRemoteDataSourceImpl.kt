@@ -22,13 +22,14 @@ class AuthRemoteDataSourceImpl(
         return if (users.contains(User(username, password))){
             "abcdefghijklmnopqrstuvwxyz0987654321"
         } else {
-            reqresService.login(
+            val response = reqresService.login(
                 loginBody = LoginBody(
                     email = username,
                     password = password,
                     username = username,
                 )
-            ).token
+            )
+            return response.token
         }
     }
 
