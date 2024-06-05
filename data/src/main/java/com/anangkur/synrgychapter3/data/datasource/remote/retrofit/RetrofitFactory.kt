@@ -1,6 +1,7 @@
 package com.anangkur.synrgychapter3.data.datasource.remote.retrofit
 
 import android.content.Context
+import com.anangkur.synrgychapter3.data.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import okhttp3.Interceptor
@@ -9,8 +10,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-const val TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjliZmIwZTgzZGUyYTRhZmIxN2MxNTdjY2IyNTRmMyIsInN1YiI6IjViZWFmNjExMGUwYTI2M2JmMzA1N2I4YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MrSIS0bBQ6yG-KQIeDGTxgnFHd2n9pcKRw38Z-rlpao"
 
 private fun provideRetrofit(context: Context, baseUrl: String): Retrofit {
     return Retrofit.Builder()
@@ -40,13 +39,13 @@ private fun provideChuckerInterceptor(context: Context): Interceptor {
 fun provideTMDBService(context: Context): TMDBService {
     return provideRetrofit(
         context,
-        "https://api.themoviedb.org/3/",
+        BuildConfig.BASE_URL_TMDB,
     ).create(TMDBService::class.java)
 }
 
 fun provideReqresService(context: Context): ReqresService {
     return provideRetrofit(
         context,
-        "https://reqres.in/api/"
+        BuildConfig.BASE_URL_REQRES,
     ).create(ReqresService::class.java)
 }
