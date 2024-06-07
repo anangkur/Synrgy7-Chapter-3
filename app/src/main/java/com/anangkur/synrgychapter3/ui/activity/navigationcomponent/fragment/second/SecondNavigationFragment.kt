@@ -63,14 +63,6 @@ class SecondNavigationFragment : Fragment(), MovieAdapterListener {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-    }
-
     /**
      * Refreshes the data displayed in the movie adapter.
      *
