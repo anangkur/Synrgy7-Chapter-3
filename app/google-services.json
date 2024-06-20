@@ -23,6 +23,82 @@
           "other_platform_oauth_client": []
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046739454612:android:d1878f2785824def208281",
+        "android_client_info": {
+          "package_name": "com.anangkur.synrgychapter3.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xSRXdLqcEbEiLoZHaH4NUeZ-8vXDHWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046739454612:android:2ac058e34d86639e208281",
+        "android_client_info": {
+          "package_name": "com.anangkur.synrgychapter3.free.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xSRXdLqcEbEiLoZHaH4NUeZ-8vXDHWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046739454612:android:22d984fdf62cef5d208281",
+        "android_client_info": {
+          "package_name": "com.anangkur.synrgychapter3.free.stg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xSRXdLqcEbEiLoZHaH4NUeZ-8vXDHWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046739454612:android:7eaa460042e513ae208281",
+        "android_client_info": {
+          "package_name": "com.anangkur.synrgychapter3.stg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xSRXdLqcEbEiLoZHaH4NUeZ-8vXDHWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
     }
   ],
   "configuration_version": "1"
