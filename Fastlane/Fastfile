@@ -1,0 +1,17 @@
+default_platform(:android)
+
+platform(:android) do
+ lane :beta do
+   # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
+   gradle(
+     task: 'assemble',
+     build_type: 'Debug'
+     flavor: 'Free'
+   )
+   firebase_app_distribution(
+     app: "1:1046739454612:android:2ac058e34d86639e208281",
+     groups: "tester"
+   )
+   # ...
+ end
+end
