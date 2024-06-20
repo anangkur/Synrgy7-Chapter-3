@@ -6,7 +6,7 @@ on:
       - opened
 
 jobs:
-  build:
+  upload_to_firebase:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
