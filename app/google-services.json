@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1046739454612",
+    "project_id": "synrgy7-35de8",
+    "storage_bucket": "synrgy7-35de8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046739454612:android:ed30c61b51901f59208281",
+        "android_client_info": {
+          "package_name": "com.anangkur.synrgychapter3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xSRXdLqcEbEiLoZHaH4NUeZ-8vXDHWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

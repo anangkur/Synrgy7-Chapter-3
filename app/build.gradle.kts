@@ -6,6 +6,7 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -131,4 +132,7 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer-smoothstreaming:2.19.1")
 
     implementation("androidx.work:work-runtime-ktx:2.7.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-analytics")
 }
