@@ -11,5 +11,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Run Build App
         run: ./gradlew assembleFreeDebug
+
+      - name: Upload and Distribute App
+        uses: mastersam07/firebase-app-distribution-action@v0.1
+        with:
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          file: '/app/build/outputs/apk/free/debug/app-free-debug.apk'
