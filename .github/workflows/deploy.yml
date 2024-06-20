@@ -12,13 +12,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+
       - name: setup java
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - run: fastlane beta
+      - run: bundle exec fastlane distribute
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
