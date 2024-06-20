@@ -12,17 +12,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: actions/setup-java@v4
+      - name: setup java
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Run Build App
+      - name: Build App
         run: ./gradlew assembleFreeDebug
 
-      - name: Upload and Distribute App
-        uses: mastersam07/firebase-app-distribution-action@v0.1
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          file: '/app/build/outputs/apk/free/debug/app-free-debug.apk'
+          groups: testers
+          file: /app/build/outputs/apk/free/debug/app-free-debug.apk
