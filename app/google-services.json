@@ -45,6 +45,25 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1046739454612:android:f9e90ca7242ad959208281",
+        "android_client_info": {
+          "package_name": "com.anangkur.synrgychapter3.free"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0xSRXdLqcEbEiLoZHaH4NUeZ-8vXDHWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1046739454612:android:2ac058e34d86639e208281",
         "android_client_info": {
           "package_name": "com.anangkur.synrgychapter3.free.dev"
