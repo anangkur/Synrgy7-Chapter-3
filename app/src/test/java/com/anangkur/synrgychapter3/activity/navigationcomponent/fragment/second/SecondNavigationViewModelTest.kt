@@ -1,13 +1,31 @@
 package com.anangkur.synrgychapter3.activity.navigationcomponent.fragment.second
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
+import com.anangkur.synrgychapter3.MainDispatcherRule
+import com.anangkur.synrgychapter3.di.factory.viewModelModule
 import com.anangkur.synrgychapter3.domain.model.Movie
 import com.anangkur.synrgychapter3.domain.repository.MovieRepository
 import com.anangkur.synrgychapter3.ui.activity.navigationcomponent.fragment.second.SecondNavigationViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestRule
+import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
+@ExperimentalCoroutinesApi
 class SecondNavigationViewModelTest {
+
+    @get:Rule
+    var rule: TestRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
 
     private val movieRepository = mock<MovieRepository>()
 
@@ -15,8 +33,11 @@ class SecondNavigationViewModelTest {
         repository = movieRepository,
     )
 
+    private val movieObserver = mock<Observer<List<Movie>>>()
+    private val movieCaptor = argumentCaptor<List<Movie>>()
+
     @Test
-    fun retrieveMovieDataTest() {
+    fun retrieveMovieDataTest() = runTest {
         // given
         val expected = listOf(
             Movie(
@@ -70,10 +91,14 @@ class SecondNavigationViewModelTest {
                 description = ""
             )
         )
+        secondNavigationViewModel.movies.observeForever(movieObserver)
+
         // when
-        val actual = secondNavigationViewModel.retrieveMovieData()
+        whenever(movieRepository.fetchData()).thenReturn(expected)
+        secondNavigationViewModel.retrieveMovieData()
 
         // then
-        Assert.assertEquals(expected, actual)
+        verify(movieObserver).onChanged(movieCaptor.capture())
+        Assert.assertEquals(listOf(expected), movieCaptor.allValues)
     }
 }
