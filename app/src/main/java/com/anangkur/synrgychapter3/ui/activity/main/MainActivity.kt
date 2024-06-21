@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonPdfHandler.setOnClickListener { openPdfHandler() }
         activityMainBinding.buttonVideoHandler.setOnClickListener { openVideoHandler() }
         activityMainBinding.buttonBlur.setOnClickListener { openBlur() }
+        activityMainBinding.buttonCrash.setOnClickListener { triggerCrash() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -213,5 +214,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun openBlur() {
         startActivity(Intent(this, BlurActivity::class.java))
+    }
+
+    private fun triggerCrash() {
+        throw RuntimeException("test crashlytics")
     }
 }

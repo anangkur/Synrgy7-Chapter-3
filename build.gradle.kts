@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.androidLibrary) apply false
     id("land.sungbin.dependency.graph.plugin") version "1.1.0"
     id("com.google.gms.google-services") version "4.4.2" apply false
+    id("com.google.firebase.crashlytics") version "3.0.2" apply false
 }
 
 dependencyGraphConfig {
