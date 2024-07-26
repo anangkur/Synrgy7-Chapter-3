@@ -9,7 +9,16 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.akndmr.library.AirySnackbar
+import com.akndmr.library.AirySnackbarSource
+import com.akndmr.library.AnimationAttribute
+import com.akndmr.library.GravityAttribute
+import com.akndmr.library.IconAttribute
+import com.akndmr.library.RadiusAttribute
+import com.akndmr.library.TextAttribute
+import com.akndmr.library.Type
 import com.anangkur.synrgychapter3.MyApplication
+import com.anangkur.synrgychapter3.R
 import com.anangkur.synrgychapter3.databinding.ActivityMainBinding
 import com.anangkur.synrgychapter3.di.factory.ViewModelFactory
 import com.anangkur.synrgychapter3.ui.activity.blur.BlurActivity
@@ -62,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.buttonVideoHandler.setOnClickListener { openVideoHandler() }
         activityMainBinding.buttonBlur.setOnClickListener { openBlur() }
         activityMainBinding.buttonCrash.setOnClickListener { triggerCrash() }
+        activityMainBinding.buttonAirySnackbar.setOnClickListener { showAirySnackbar() }
 
         Log.d("MainActivity", "lifecycle state: onCreate")
 
@@ -218,5 +228,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun triggerCrash() {
         throw RuntimeException("test crashlytics")
+    }
+
+    private fun showAirySnackbar() {
+        AirySnackbar.make(
+            source = AirySnackbarSource.ActivitySource(activity = this),
+            type = Type.Custom(bgColor = R.color.teal_200),
+            attributes = listOf(
+                TextAttribute.Text(text = "Custom color bg AirySnackbar"),
+                TextAttribute.TextColor(textColor = R.color.black),
+                RadiusAttribute.Radius(radius = 8f),
+                GravityAttribute.Top,
+                AnimationAttribute.FadeInOut,
+            ),
+        ).show()
     }
 }
